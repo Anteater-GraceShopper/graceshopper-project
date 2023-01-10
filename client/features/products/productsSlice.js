@@ -46,20 +46,20 @@ export const deleteProductAsync = createAsyncThunk(
   }
 );
 
-export const campusesSlice = createSlice({
-  name: "campuses",
+export const productsSlice = createSlice({
+  name: "products",
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchCampusesAsync.fulfilled, (state, action) => {
+    builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
       return action.payload;
     });
-    builder.addCase(addCampusesAsync.fulfilled, (state, action) => {
+    builder.addCase(addProductAsync.fulfilled, (state, action) => {
       state.push(action.payload);
     });
   },
 });
 
-export const selectCampuses = (state) => state.campuses;
+export const selectProducts = (state) => state.products;
 
-export default campusesSlice.reducer;
+export default productsSlice.reducer;
