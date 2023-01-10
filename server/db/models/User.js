@@ -6,20 +6,20 @@ const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 5;
 
 const User = db.define("user", {
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
+  // firstName: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  //   validate: {
+  //     notEmpty: true,
+  //   },
+  // },
+  // lastName: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  //   validate: {
+  //     notEmpty: true,
+  //   },
+  // },
   username: {
     type: Sequelize.STRING,
     unique: true,
@@ -28,23 +28,23 @@ const User = db.define("user", {
   password: {
     type: Sequelize.STRING,
   },
-  userType: {
-    type: Sequelize.ENUM("ADMIN", "CUSTOMER"),
-    defaultValue: "CUSTOMER",
-    allowNull: false,
-  },
-  isAdmin: {
-    type: Sequelize.VIRTUAL,
-    get() {
-      return this.userType === "ADMIN";
-    },
-  },
-  isCustomer: {
-    type: Sequelize.VIRTUAL,
-    get() {
-      return this.userType === "CUSTOMER";
-    },
-  },
+  // userType: {
+  //   type: Sequelize.ENUM("ADMIN", "CUSTOMER"),
+  //   defaultValue: "CUSTOMER",
+  //   allowNull: false,
+  // },
+  // isAdmin: {
+  //   type: Sequelize.VIRTUAL,
+  //   get() {
+  //     return this.userType === "ADMIN";
+  //   },
+  // },
+  // isCustomer: {
+  //   type: Sequelize.VIRTUAL,
+  //   get() {
+  //     return this.userType === "CUSTOMER";
+  //   },
+  // },
 });
 
 module.exports = User;
@@ -76,6 +76,7 @@ User.authenticate = async function ({ username, password }) {
 
 User.findByToken = async function (token) {
   try {
+    console.log(token);
     const { id } = await jwt.verify(token, process.env.JWT);
     const user = User.findByPk(id);
     if (!user) {
