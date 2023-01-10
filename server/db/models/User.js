@@ -3,7 +3,7 @@ const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const SALT_ROUNDS = 5;
+const SALT_ROUNDS = 6;
 
 const User = db.define("user", {
   username: {
