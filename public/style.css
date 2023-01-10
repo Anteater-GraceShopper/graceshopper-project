@@ -19,3 +19,7 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.all-items {
+  padding-top: 3em;
+}
