@@ -6,3 +6,4 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 server/db/db.js
+package.json
