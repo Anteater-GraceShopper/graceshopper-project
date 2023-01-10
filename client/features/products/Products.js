@@ -11,16 +11,18 @@ const Products = () => {
   }, [dispatch]);
   return (
     <div>
-      {products.map((product) => {
-        return (
-          <div>
-            <Link to={`/products/${product.id}`}>{product.name}</Link>
-            <img src={product.imageUrl} alt="image" />
-            <p>{product.price}</p>
-            <p>{product.description}</p>
-          </div>
-        );
-      })}
+      {products && products.length
+        ? products.map((product) => {
+            return (
+              <div>
+                <Link to={`/products/${product.id}`}>{product.name}</Link>
+                <img src={product.imageUrl} alt="image" />
+                <p>{product.price}</p>
+                <p>{product.description}</p>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 };
