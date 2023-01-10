@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
+//test comment
 const SALT_ROUNDS = 5;
 
 const User = db.define("user", {
