@@ -3,7 +3,7 @@ import logger from "redux-logger";
 import authReducer from "../features/auth/authSlice";
 import productsReducer from "../features/products/productsSlice";
 
-import shoppingCartReducer from "../shoppingCart/shoppingCartSlice";
+import shoppingCartReducer from "../features/shoppingCart/shoppingCartSlice";
 
 import singleProductReducer from "../features/products/singleProductSlice";
 

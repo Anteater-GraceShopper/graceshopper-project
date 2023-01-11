@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCartAsync, deleteCartProductAsync } from "./shoppingCartSlice";
+import {
+  fetchCartAsync,
+  deleteCartProductAsync,
+  selectCart,
+} from "./shoppingCartSlice";
 import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
@@ -12,9 +16,12 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 
 const ShoppingCart = ({ shoppingCart }) => {
-  // const onChange = (productId, qty, price) => {
-  //   updateCart({ id: productId, quantity: qty, price: qty * price });
-  // };
+  const dispatch = useDispatch();
+  const cart = useSelector(selectCart);
+  console.log(cart);
+  useEffect(() => {
+    dispatch(fetchCartAsync());
+  }, [dispatch]);
   return (
     <div className="all-items">
       <h1>Shopping Cart!</h1>
@@ -26,12 +33,12 @@ const ShoppingCart = ({ shoppingCart }) => {
           justifyContent: "center",
         }}
       >
-        {shoppingCart.currentOrder.length < 1 && (
+        {cart.length < 1 && (
           <div>
             <h2>Cart is empty!</h2>
           </div>
         )}
-        {shoppingCart.currentOrder.map((product) => {
+        {cart.map((product) => {
           return (
             <div key={product.id}>
               <Card
