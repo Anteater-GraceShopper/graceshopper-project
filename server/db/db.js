@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+//PC users - comment out lines 2-6
 const pkg = require("../../package.json");
 
 const databaseName =
@@ -21,8 +22,23 @@ if (process.env.DATABASE_URL) {
   };
 }
 
+//PC users - comment out lines 26-29
 const db = new Sequelize(
   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
   config
 );
+
+//PC users db configuration
+// const db = new Sequelize(
+//   process.env.DATABASE_URL || {
+//     host: "localhost",
+//     port: 5432,
+//     database: "everything_honey",
+//     dialect: "postgres",
+//     username: "postgres",
+//     password: "admin",
+//     config,
+//   }
+// );
+
 module.exports = db;
