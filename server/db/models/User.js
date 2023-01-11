@@ -7,11 +7,11 @@ const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 5;
 
 const User = db.define("user", {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
+  // id: {
+  //   type: Sequelize.INTEGER,
+  //   primaryKey: true,
+  //   autoIncrement: true,
+  // },
   username: {
     type: Sequelize.STRING,
     unique: true,
