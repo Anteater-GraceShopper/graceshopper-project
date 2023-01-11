@@ -1,13 +1,14 @@
-const router = require('express').Router()
-const { Product } = require('../db')
-module.exports = router
+const router = require("express").Router();
+const {
+  models: { Product },
+} = require("../db");
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    const products = await Product.findAll({})
-    res.json(products)
+    const allProducts = await Product.findAll();
+    res.json(allProducts);
   } catch (err) {
-    next(err)
+    next(err);
   }
 });
 
@@ -40,3 +41,4 @@ router.delete("/:productId", async (req, res, next) => {
     next(error);
   }
 });
+module.exports = router;
