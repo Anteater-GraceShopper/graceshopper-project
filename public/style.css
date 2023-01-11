@@ -26,5 +26,9 @@ form div {
 
 .logout-button {
   float: right;
-  margin-right: 3em;
+  margin-right: auto;
+}
+
+a:visited {
+  color: black;
 }
