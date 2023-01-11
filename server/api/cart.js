@@ -31,8 +31,9 @@ router.put('/checkout', async (req, res, next) => {
   try {
     const currentOrder = await Cart.findAll();
     if (currentOrder) {
-      const newOrder = await Order.create(currentOrder);
-      res.json(newOrder)
+      console.log("Your order has been completed!")
+      // const newOrder = await Order.create(currentOrder);
+      // res.json(newOrder)
     } else {
       console.log('Oops, looks like your cart is empty!')
     }
