@@ -12,6 +12,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    res.send(await Cart.create(req.body));
+  } catch (err) {
+    next(err);
+  }
+});
+
 //how do we determine if the user is logged in or not?
 
 //update the product number
