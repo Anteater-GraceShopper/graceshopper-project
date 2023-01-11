@@ -1,5 +1,8 @@
 body {
   font-family: sans-serif;
+  background-image: url("honey.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 a {
