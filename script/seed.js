@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Product },
+  models: { User, Product, Cart },
 } = require("../server/db");
 
 /**
@@ -156,7 +156,13 @@ const products = [
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
-
+  const cart = await Promise.all([
+    Cart.create({
+      orderId: 1,
+      productId: products[3].id,
+      itemCount: 2,
+    }),
+  ]);
   // Creating Users
   const users = await Promise.all([
     User.create({
@@ -193,6 +199,9 @@ async function seed() {
       cody: users[0],
       murphy: users[1],
       gomez: users[2],
+    },
+    carts: {
+      cartOne: cart[0],
     },
   };
 }

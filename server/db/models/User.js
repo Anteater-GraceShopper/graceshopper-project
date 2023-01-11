@@ -7,6 +7,11 @@ const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 5;
 
 const User = db.define("user", {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
   username: {
     type: Sequelize.STRING,
     unique: true,
@@ -25,7 +30,7 @@ const User = db.define("user", {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
-  orders: {
+  userOrders: {
     type: Sequelize.ARRAY(Sequelize.INTEGER),
     defaultValue: [],
   },
