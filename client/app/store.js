@@ -7,16 +7,13 @@ import shoppingCartReducer from "../shoppingCart/shoppingCartSlice";
 
 import singleProductReducer from "../features/products/singleProductSlice";
 
-
 const store = configureStore({
   reducer: {
     auth: authReducer,
     products: productsReducer,
-
     carts: shoppingCartReducer,
 
     product: singleProductReducer,
-
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
