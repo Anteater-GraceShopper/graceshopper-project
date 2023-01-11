@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 
 //how do we determine if the user is logged in or not?
 
-//update the product amount
+//update the product number
 router.put('/', async (req, res, next) => {
   try {
     const product = await Cart.findByPk(req.params.productId)
@@ -31,9 +31,8 @@ router.put('/checkout', async (req, res, next) => {
   try {
     const currentOrder = await Cart.findAll();
     if (currentOrder) {
-      console.log("Your order has been completed!")
-      // const newOrder = await Order.create(currentOrder);
-      // res.json(newOrder)
+      const newOrder = await Order.create(currentOrder);
+      res.json(newOrder)
     } else {
       console.log('Oops, looks like your cart is empty!')
     }
