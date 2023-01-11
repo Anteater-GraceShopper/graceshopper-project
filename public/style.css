@@ -23,3 +23,12 @@ form div {
 .all-items {
   padding-top: 3em;
 }
+
+.logout-button {
+  float: right;
+  margin-right: auto;
+}
+
+a:visited {
+  color: black;
+}

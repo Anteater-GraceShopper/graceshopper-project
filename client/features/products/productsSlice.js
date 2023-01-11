@@ -1,5 +1,5 @@
-import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const fetchProductsAsync = createAsyncThunk(
   "products/fetchAll",
@@ -33,16 +33,13 @@ export const addProductAsync = createAsyncThunk(
 
 export const deleteProductAsync = createAsyncThunk(
   "products/deleteProduct",
-  async (id, name, description, imageUrl) => {
-    const { data } = await axios.delete(`/api/products/${id}`, {
-      id,
-      name,
-      price,
-      quantity,
-      description,
-      imageUrl,
-    });
-    return data;
+  async (productId) => {
+    try {
+      const { data } = await axios.delete(`/api/products/${productId}`);
+      return data;
+    } catch (error) {
+      return error.message;
+    }
   }
 );
 
