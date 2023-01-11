@@ -8,6 +8,7 @@ import Home from "../features/home/Home";
 import Products from "../features/products/Products";
 import SingleProduct from "../features/products/SingleProduct";
 import ShoppingCart from "../features/shoppingCart/ShoppingCart";
+import AddProduct from "../features/adminView/AddProduct";
 import { me } from "./store";
 
 /**
@@ -33,6 +34,7 @@ const AppRoutes = () => {
           <Route path="/products/:productId" element={<SingleProduct />} />
           <Route to="/checkout" element={<Checkout />} />
           <Route path="/editproduct" element={<EditProduct />} />
+          <Route path="/addproduct" element={<AddProduct />} />
         </Routes>
       ) : (
         <Routes>
@@ -49,6 +51,7 @@ const AppRoutes = () => {
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
           <Route path="/products" element={<Products />} />
+          <Route path="/cart" element={<ShoppingCart />} />
         </Routes>
       )}
     </div>

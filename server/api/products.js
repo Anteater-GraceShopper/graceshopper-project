@@ -29,6 +29,15 @@ router.put("/:productId", async (req, res, next) => {
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    const newProduct = await Product.create(req.body);
+    res.json(newProduct);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.delete("/:productId", async (req, res, next) => {
   try {
     await Product.destroy({
