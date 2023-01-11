@@ -91,4 +91,4 @@ export const shoppingCartSlice = createSlice({
 
 export const selectCart = (state) => state.carts;
 
-export default cartSlice.reducer;
+export default shoppingCartSlice.reducer;
