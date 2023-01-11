@@ -1,12 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-let initialState = {
-  currentOrder: [],
-  totalQuantity: 0,
-  totalPrice: 0,
-};
-
 export const fetchCartAsync = createAsyncThunk("cart/fetchAll", async () => {
   try {
     const { data } = await axios.get("/api/cart");
@@ -74,7 +68,7 @@ export const createOrderAsync = createAsyncThunk(
 
 export const shoppingCartSlice = createSlice({
   name: "carts",
-  initialState,
+  initialState: [],
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCartAsync.fulfilled, (state, action) => {

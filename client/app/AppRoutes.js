@@ -6,6 +6,7 @@ import Checkout from "../features/checkout/Checkout";
 import Home from "../features/home/Home";
 import Products from "../features/products/Products";
 import SingleProduct from "../features/products/SingleProduct";
+import ShoppingCart from "../features/shoppingCart/ShoppingCart";
 import { me } from "./store";
 
 /**
@@ -25,6 +26,7 @@ const AppRoutes = () => {
       {isLoggedIn ? (
         <Routes>
           <Route path="/products" element={<Products />} />
+          <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/home" element={<Home />} />
           <Route path="/*" element={<Home />} />
           <Route path="/products/:productId" element={<SingleProduct />} />
