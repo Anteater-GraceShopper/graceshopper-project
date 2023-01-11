@@ -100,7 +100,7 @@ const ShoppingCart = ({ shoppingCart }) => {
         type="submit"
         onClick={async (evt) => {
           evt.preventDefault();
-          await dispatch(createOrderAsync(productId));
+          await dispatch(createOrderAsync(cart));
         }}
       >
         Checkout!
