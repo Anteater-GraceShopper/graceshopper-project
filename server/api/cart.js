@@ -14,8 +14,6 @@ router.get("/", async (req, res, next) => {
 
 //how do we determine if the user is logged in or not?
 
-//update the product amount
-router.put("/", async (req, res, next) => {
 //update the product number
 router.put('/', async (req, res, next) => {
   try {
