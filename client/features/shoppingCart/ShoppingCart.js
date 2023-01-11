@@ -4,6 +4,7 @@ import {
   fetchCartAsync,
   deleteCartProductAsync,
   selectCart,
+  createOrderAsync,
 } from "./shoppingCartSlice";
 import { Link } from "react-router-dom";
 
@@ -95,7 +96,16 @@ const ShoppingCart = ({ shoppingCart }) => {
           );
         })}
       </Grid>
-      <button>Checkout!</button>
+      <button
+        type="submit"
+        onClick={async (evt) => {
+          evt.preventDefault();
+          await dispatch(createOrderAsync(productId));
+        }}
+      >
+        Checkout!
+      </button>
+      <Link to="/">Cancel</Link>
     </div>
   );
 };
