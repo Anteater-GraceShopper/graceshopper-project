@@ -3,7 +3,7 @@ import logger from "redux-logger";
 import authReducer from "../features/auth/authSlice";
 import productsReducer from "../features/products/productsSlice";
 
-import cartReducer from "../shoppingCart/shoppingCartSlice";
+import shoppingCartReducer from "../shoppingCart/shoppingCartSlice";
 
 import singleProductReducer from "../features/products/singleProductSlice";
 
@@ -11,8 +11,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     products: productsReducer,
-
-    carts: cartReducer,
+    carts: shoppingCartReducer,
 
     product: singleProductReducer,
   },
