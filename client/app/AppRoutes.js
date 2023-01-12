@@ -21,7 +21,6 @@ const AppRoutes = () => {
   const users = useSelector((state) => state.users);
   useEffect(() => {
     dispatch(me());
-    dispatch(fetchUsersAsync());
   }, []);
   console.log(users);
   return (
