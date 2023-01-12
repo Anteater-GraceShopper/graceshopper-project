@@ -1,11 +1,15 @@
 const router = require("express").Router();
-const { Order } = require("../db");
+const { Order, User } = require("../db");
 module.exports = router;
 
-router.post("/", async (req, res, next) => {
-  try {
-    res.send(await Order.create(req.body));
-  } catch (err) {
-    next(err);
-  }
+router.put("/:productId/:userId", async (req, res, next) => {
+  const product = await Product.findByPk(req.params.productId);
+  const user = await User.findByPk(req.params.userId, {
+    include: Order,
+    where: {
+      isComplete: false,
+    },
+  });
+  const order = user.orders[0];
+  const newProduct = await order;
 });
