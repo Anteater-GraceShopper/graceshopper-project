@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProducts, fetchProductsAsync } from "./productsSlice";
 import { Link } from "react-router-dom";
-
+import { me } from "../../app/store";
 import Typography from "@mui/material/Typography";
 
 import CardMedia from "@mui/material/CardMedia";
@@ -13,6 +13,7 @@ import Grid from "@mui/material/Grid";
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);
+  const isAdmin = useSelector((state) => state.auth.me.isAdmin);
   useEffect(() => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
@@ -59,6 +60,7 @@ const Products = () => {
                         {product.price}
                       </Typography>
                     </CardContent>
+                    {isAdmin ? <button>Delete</button> : null}
                   </Card>
                 </div>
               );
