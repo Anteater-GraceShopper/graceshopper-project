@@ -30,6 +30,18 @@ export const editSingleProduct = createAsyncThunk(
   }
 );
 
+export const addSingleProduct = createAsyncThunk(
+  "addSingleProduct",
+  async (productId) => {
+    try {
+      const { data } = await axios.post("/api/cart", { productId });
+      return data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
 const singleProductSlice = createSlice({
   name: "product",
   initialState: {},

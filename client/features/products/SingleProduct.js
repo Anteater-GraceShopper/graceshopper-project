@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchSingleProduct, selectSingleProduct } from "./singleProductSlice";
-import { addToCartAsync } from "../shoppingCart/shoppingCartSlice";
+import {
+  addSingleProduct,
+  fetchSingleProduct,
+  selectSingleProduct,
+} from "./singleProductSlice";
 
 // import Grid from "@mui/material/Grid";
 // import CardMedia from "@mui/material/CardMedia";
@@ -36,7 +39,7 @@ const SingleProduct = () => {
         onClick={async (evt) => {
           evt.preventDefault();
           await dispatch(
-            addToCartAsync(product.id, product.quantity, product.price)
+            addSingleProduct(product.id, product.quantity, product.price)
           );
         }}
       >
