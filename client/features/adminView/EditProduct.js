@@ -1,156 +1,145 @@
-import { Button, TextField } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import {
-  editSingleProduct,
-  fetchSingleProduct,
-  selectSingleProduct,
-} from "../products/singleProductSlice";
+import { Button, Grid, TextField } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { editSingleProduct } from "../products/singleProductSlice";
 
 const EditProduct = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { productId } = useParams();
-  const product = useSelector(selectSingleProduct);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
 
-  useEffect(() => {
-    dispatch(fetchSingleProduct(productId));
-  }, [dispatch]);
+  const nameHandler = (event) => {
+    setName(event.target.value);
+  };
 
-  const handleNameSubmit = async (event) => {
+  const priceHandler = (event) => {
+    setName(event.target.value);
+  };
+
+  const quantityHandler = (event) => {
+    setName(event.target.value);
+  };
+
+  const imageHandler = (event) => {
+    setImageUrl(event.target.value);
+  };
+
+  const descriptionHandler = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    await dispatch(editSingleProduct(name));
+    await dispatch(
+      editSingleProduct({
+        productId,
+        name,
+        price,
+        quantity,
+        description,
+        imageUrl,
+      })
+    );
     setName("");
-  };
-
-  const handlePriceSubmit = async (event) => {
-    event.preventDefault();
-    await dispatch(editSingleProduct(price));
     setPrice("");
-  };
-
-  const handleQuantitySubmit = async (event) => {
-    event.preventDefault();
-    await dispatch(editSingleProduct(quantity));
     setQuantity("");
-  };
-
-  const handleDescriptionSubmit = async (event) => {
-    event.preventDefault();
-    await dispatch(editSingleProduct(description));
+    setImageUrl("");
     setDescription("");
-  };
-
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-
-  const handlePrice = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleQuantity = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleDescription = (event) => {
-    setName(event.target.value);
+    navigate("/products");
   };
 
   return (
     <div>
-      <h3 className="header" align="center">
-        Update {product.name}'s information below:
-      </h3>
-      <form className="update-form" align="center" onSubmit={handleNameSubmit}>
-        <TextField
-          className="submission-field"
-          label="name"
-          value={name}
-          onChange={handleName}
-          sx={{ bgcolor: "#FFFFFF" }}
-        >
-          <Button
-            variant="contained"
-            className="update-button"
-            align="center"
-            type="submit"
-            sx={{ bgcolor: "55828B", width: 150, ml: 1.5 }}
-          >
-            Update Name
-          </Button>
-        </TextField>
-      </form>
-      <form className="update-form" align="center" onSubmit={handlePriceSubmit}>
-        <TextField
-          className="submission-field"
-          label="price"
-          value={price}
-          onChange={handlePrice}
-          sx={{ bgcolor: "#FFFFFF" }}
-        >
-          <Button
-            variant="contained"
-            className="update-button"
-            align="center"
-            type="submit"
-            sx={{ bgcolor: "55828B", width: 150, ml: 1.5 }}
-          >
-            Update Price
-          </Button>
-        </TextField>
-      </form>
-      <form
-        className="update-form"
-        align="center"
-        onSubmit={handleQuantitySubmit}
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="center"
+        direction="column"
       >
-        <TextField
-          className="submission-field"
-          label="quantity"
-          value={quantity}
-          onChange={handleQuantity}
-          sx={{ bgcolor: "#FFFFFF" }}
-        >
-          <Button
-            variant="contained"
-            className="update-button"
-            align="center"
-            type="submit"
-            sx={{ bgcolor: "55828B", width: 150, ml: 1.5 }}
+        <label align="center" className="header">
+          Edit product
+        </label>
+        <form align="center" className="form" onSubmit={handleSubmit}>
+          <Grid
+            item
+            sx={{
+              mt: 2,
+            }}
           >
-            Update Quantity
-          </Button>
-        </TextField>
-      </form>
-      <form
-        className="update-form"
-        align="center"
-        onSubmit={handleDescriptionSubmit}
-      >
-        <TextField
-          className="submission-field"
-          label="description"
-          value={description}
-          onChange={handleDescription}
-          sx={{ bgcolor: "#FFFFFF" }}
-        >
-          <Button
-            variant="contained"
-            className="update-button"
-            align="center"
-            type="submit"
-            sx={{ bgcolor: "55828B", width: 150, ml: 1.5 }}
+            <TextField
+              sx={{ input: { bgcolor: "white" } }}
+              label="Product Name"
+              value={name}
+              onChange={nameHandler}
+            />
+          </Grid>
+          <Grid
+            item
+            sx={{
+              mt: 2,
+            }}
           >
-            Update Description
-          </Button>
-        </TextField>
-      </form>
+            <TextField
+              sx={{ input: { bgcolor: "white" } }}
+              label="Price"
+              value={price}
+              onChange={priceHandler}
+            />
+          </Grid>
+          <Grid
+            item
+            sx={{
+              mt: 2,
+            }}
+          >
+            <TextField
+              sx={{ input: { bgcolor: "white" } }}
+              inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+              label="Product Quantity"
+              value={quantity}
+              onChange={quantityHandler}
+            />
+          </Grid>
+          <Grid
+            item
+            sx={{
+              mt: 2,
+            }}
+          >
+            <TextField
+              sx={{ input: { bgcolor: "white" } }}
+              label="Image URL"
+              value={imageUrl}
+              onChange={imageHandler}
+            />
+          </Grid>
+          <Grid>
+            <TextField
+              sx={{ input: { bgcolor: "white" } }}
+              label="Description"
+              value={description}
+              onChange={descriptionHandler}
+            />
+          </Grid>
+          <Grid
+            item
+            sx={{
+              mt: 2,
+            }}
+          >
+            <Button variant="contained" className="submit-button" type="submit">
+              Submit
+            </Button>
+          </Grid>
+        </form>
+      </Grid>
     </div>
   );
 };
