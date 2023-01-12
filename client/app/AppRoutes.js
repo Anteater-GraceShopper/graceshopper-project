@@ -10,7 +10,8 @@ import SingleProduct from "../features/products/SingleProduct";
 import ShoppingCart from "../features/shoppingCart/ShoppingCart";
 import AddProduct from "../features/adminView/AddProduct";
 import { me } from "./store";
-import fetchUsersAsync from "../features/adminView/usersSlice";
+import { fetchUsersAsync } from "../features/adminView/usersSlice";
+
 /**
  * COMPONENT
  */
@@ -18,14 +19,15 @@ import fetchUsersAsync from "../features/adminView/usersSlice";
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const isAdmin = useSelector((state) => state.auth.me.isAdmin);
+
   useEffect(() => {
     dispatch(me());
   }, []);
-  console.log(users);
+
   return (
     <div>
-      {isLoggedIn ? (
+      {isLoggedIn && isAdmin ? (
         <Routes>
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<ShoppingCart />} />
