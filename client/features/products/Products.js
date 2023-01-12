@@ -2,11 +2,18 @@ import Typography from "@mui/material/Typography";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { me } from "../../app/store";
+import Typography from "@mui/material/Typography";
+
+import CardMedia from "@mui/material/CardMedia";
+
 import {
   deleteProductAsync,
   fetchProductsAsync,
   selectProducts,
 } from "./productsSlice";
+
 
 import { CardContent } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -67,6 +74,7 @@ const Products = () => {
                         {product.price}
                       </Typography>
                     </CardContent>
+
                     {isAdmin ? (
                       <button
                         color="red"
@@ -75,6 +83,7 @@ const Products = () => {
                         Delete From Inventory
                       </button>
                     ) : null}
+
                   </Card>
                 </div>
               );
