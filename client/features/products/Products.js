@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { me } from "../../app/store";
-import Typography from "@mui/material/Typography";
+
 
 import CardMedia from "@mui/material/CardMedia";
 
