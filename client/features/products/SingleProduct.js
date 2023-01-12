@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchSingleProduct, selectSingleProduct } from "./singleProductSlice";
+import { addToCartAsync } from "../shoppingCart/shoppingCartSlice";
 
 // import Grid from "@mui/material/Grid";
 // import CardMedia from "@mui/material/CardMedia";
@@ -30,7 +31,17 @@ const SingleProduct = () => {
         <p>{price}</p>
         <img src={imageUrl} />
       </div>
-      <button>Add to Cart</button>
+      <button
+        type="submit"
+        onClick={async (evt) => {
+          evt.preventDefault();
+          await dispatch(
+            addToCartAsync(product.id, product.quantity, product.price)
+          );
+        }}
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };
