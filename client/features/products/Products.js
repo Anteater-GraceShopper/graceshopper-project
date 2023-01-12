@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 import { me } from "../../app/store";
 
-
+import { CardContent } from "@mui/material";
+import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 
 import {
@@ -13,11 +14,6 @@ import {
   fetchProductsAsync,
   selectProducts,
 } from "./productsSlice";
-
-
-import { CardContent } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 
 import Grid from "@mui/material/Grid";
 const Products = () => {
