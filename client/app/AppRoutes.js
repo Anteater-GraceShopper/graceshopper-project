@@ -10,7 +10,6 @@ import SingleProduct from "../features/products/SingleProduct";
 import ShoppingCart from "../features/shoppingCart/ShoppingCart";
 import AddProduct from "../features/adminView/AddProduct";
 import { me } from "./store";
-import { fetchUsersAsync } from "../features/adminView/usersSlice";
 
 /**
  * COMPONENT
@@ -37,6 +36,15 @@ const AppRoutes = () => {
           <Route to="/checkout" element={<Checkout />} />
           <Route path="/editproduct" element={<EditProduct />} />
           <Route path="/addproduct" element={<AddProduct />} />
+        </Routes>
+      ) : isLoggedIn ? (
+        <Routes>
+          <Route path="/products" element={<Products />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/*" element={<Home />} />
+          <Route path="/products/:productId" element={<SingleProduct />} />
+          <Route to="/checkout" element={<Checkout />} />
         </Routes>
       ) : (
         <Routes>
