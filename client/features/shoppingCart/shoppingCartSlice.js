@@ -77,8 +77,14 @@ export const shoppingCartSlice = createSlice({
     builder.addCase(addToCartAsync.fulfilled, (state, action) => {
       state.push(action.payload);
     });
+    builder.addCase(createOrderAsync.fulfilled, (state, action) => {
+      state.push(action.payload);
+    });
     builder.addCase(editCartAsync.fulfilled, (state, action) => {
       return action.payload;
+    });
+    builder.addCase(deleteCartProductAsync.fulfilled, (state, action) => {
+      return state.filter((product) => product.productId != action.payload);
     });
   },
 });

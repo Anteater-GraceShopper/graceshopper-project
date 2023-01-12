@@ -58,7 +58,7 @@ const ShoppingCart = ({ shoppingCart }) => {
                   width="300"
                 />
                 <CardContent>
-                  <Link to={`/products/${product.id}`}>
+                  <Link to={`/products/${product.productId}`}>
                     <Typography
                       variant="body2"
                       color="text.secondary"
