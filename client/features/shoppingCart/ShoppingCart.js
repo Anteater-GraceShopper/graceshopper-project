@@ -98,11 +98,11 @@ const ShoppingCart = ({ shoppingCart }) => {
       </Grid>
       <Link to="/checkout">
       <button
-        type="submit"
-        onClick={async (evt) => {
-          evt.preventDefault();
-          await dispatch(createOrderAsync(cart));
-        }}
+        type="button"
+        // onClick={async (evt) => {
+        //   evt.preventDefault();
+        //   await dispatch(createOrderAsync(cart));
+        // }}
       >Checkout
       </button></Link>
       <Link to="/products">Cancel</Link>
