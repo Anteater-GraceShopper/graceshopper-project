@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-
+//add ternery --if cart exists, add to cart; if not, create cart
 router.post("/", async (req, res, next) => {
   try {
     res.send(await Cart.create(req.body));

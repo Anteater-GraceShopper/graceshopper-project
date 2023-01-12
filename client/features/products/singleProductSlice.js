@@ -30,6 +30,18 @@ export const editSingleProduct = createAsyncThunk(
   }
 );
 
+export const addSingleProduct = createAsyncThunk(
+  "addSingleProduct",
+  async (productId) => {
+    try {
+      const { data } = await axios.post("/api/cart", { productId });
+      return data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+//comment
 const singleProductSlice = createSlice({
   name: "product",
   initialState: {},
@@ -40,6 +52,9 @@ const singleProductSlice = createSlice({
     });
     builder.addCase(editSingleProduct.fulfilled, (state, action) => {
       return action.payload;
+    });
+    builder.addCase(addSingleProduct.fulfilled, (state, action) => {
+      state.push(action.payload);
     });
   },
 });
