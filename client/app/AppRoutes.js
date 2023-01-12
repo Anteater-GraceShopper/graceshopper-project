@@ -9,6 +9,8 @@ import Products from "../features/products/Products";
 import SingleProduct from "../features/products/SingleProduct";
 import ShoppingCart from "../features/shoppingCart/ShoppingCart";
 import AddProduct from "../features/adminView/AddProduct";
+import AllUsers from "../features/adminView/AllUsers";
+import SingleUser from "../features/adminView/SingleUser";
 import { me } from "./store";
 
 /**
@@ -33,9 +35,11 @@ const AppRoutes = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/*" element={<Home />} />
           <Route path="/products/:productId" element={<SingleProduct />} />
-          <Route to="/checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/editproduct" element={<EditProduct />} />
           <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/users" element={<AllUsers />} />
+          <Route path="/users/:userId" element={<SingleUser />} />
         </Routes>
       ) : isLoggedIn ? (
         <Routes>

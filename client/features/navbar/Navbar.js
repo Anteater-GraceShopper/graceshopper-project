@@ -58,7 +58,13 @@ const Navbar = () => {
                   sx={{ mr: 3, ml: 3 }}>
                   Shopping Cart
                 </Typography>
-
+                <Typography
+                  variant="h5"
+                  sx={{ mr: 3, ml: 3 }}
+                  component={Link}
+                  to="/users">
+                  Users
+                </Typography>
                 <Typography
                   variant="h5"
                   sx={{ mr: 3, ml: 3 }}

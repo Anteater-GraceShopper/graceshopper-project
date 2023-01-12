@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import authReducer from "../features/auth/authSlice";
 import productsReducer from "../features/products/productsSlice";
-
+import singleUserReducer from "../features/adminView/singleUserSlice";
 import shoppingCartReducer from "../features/shoppingCart/shoppingCartSlice";
 import usersReducer from "../features/adminView/usersSlice";
 import singleProductReducer from "../features/products/singleProductSlice";
@@ -14,6 +14,7 @@ const store = configureStore({
     carts: shoppingCartReducer,
     users: usersReducer,
     product: singleProductReducer,
+    user: singleUserReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
