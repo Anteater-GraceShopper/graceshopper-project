@@ -58,7 +58,7 @@ const ShoppingCart = ({ shoppingCart }) => {
                   width="300"
                 />
                 <CardContent>
-                  <Link to={`/products/${product.id}`}>
+                  <Link to={`/products/${product.productId}`}>
                     <Typography
                       variant="body2"
                       color="text.secondary"
@@ -96,16 +96,16 @@ const ShoppingCart = ({ shoppingCart }) => {
           );
         })}
       </Grid>
+      <Link to="/checkout">
       <button
         type="submit"
         onClick={async (evt) => {
           evt.preventDefault();
           await dispatch(createOrderAsync(cart));
         }}
-      >
-        Checkout!
-      </button>
-      <Link to="/">Cancel</Link>
+      >Checkout
+      </button></Link>
+      <Link to="/products">Cancel</Link>
     </div>
   );
 };
