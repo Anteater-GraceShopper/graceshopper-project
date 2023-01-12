@@ -9,6 +9,7 @@ import { AppBar } from "@mui/material";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isAdmin = useSelector((state) => state.auth.me.isAdmin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -24,7 +25,7 @@ const Navbar = () => {
             Everything Honey
           </Typography>
           <nav>
-            {isLoggedIn ? (
+            {isLoggedIn && isAdmin ? (
               <div>
                 {/* The navbar will show these links after you log in */}
 
@@ -42,6 +43,55 @@ const Navbar = () => {
                   to="/products"
                   sx={{ mr: 3, ml: 3 }}>
                   Products
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to="/addproduct"
+                  sx={{ mr: 3, ml: 3 }}>
+                  Add New Product
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to="/cart"
+                  sx={{ mr: 3, ml: 3 }}>
+                  Shopping Cart
+                </Typography>
+
+                <Typography
+                  variant="h5"
+                  sx={{ mr: 3, ml: 3 }}
+                  component={Link}
+                  onClick={logoutAndRedirectHome}
+                  className="logout-button">
+                  Logout
+                </Typography>
+              </div>
+            ) : isLoggedIn ? (
+              <div>
+                {/* The navbar will show these links before you log in */}
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to="/home"
+                  sx={{ mr: 3, ml: 3 }}>
+                  Home
+                </Typography>
+
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to="/products"
+                  sx={{ mr: 3, ml: 3 }}>
+                  Products
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to="/cart"
+                  sx={{ mr: 3, ml: 3 }}>
+                  Shopping Cart
                 </Typography>
 
                 <Typography
