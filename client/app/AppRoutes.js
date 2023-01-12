@@ -9,7 +9,7 @@ import SingleProduct from "../features/products/SingleProduct";
 import ShoppingCart from "../features/shoppingCart/ShoppingCart";
 import AddProduct from "../features/adminView/AddProduct";
 import { me } from "./store";
-
+import fetchUsersAsync from "../features/adminView/usersSlice";
 /**
  * COMPONENT
  */
@@ -17,11 +17,12 @@ import { me } from "./store";
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
-
+  const users = useSelector((state) => state.users);
   useEffect(() => {
     dispatch(me());
+    dispatch(fetchUsersAsync());
   }, []);
-
+  console.log(users);
   return (
     <div>
       {isLoggedIn ? (
