@@ -54,6 +54,9 @@ export const productsSlice = createSlice({
     builder.addCase(addProductAsync.fulfilled, (state, action) => {
       state.push(action.payload);
     });
+    builder.addCase(deleteProductAsync.fulfilled, (state, action) => {
+      return state.filter((product) => product.id !== action.payload.id);
+    });
   },
 });
 
