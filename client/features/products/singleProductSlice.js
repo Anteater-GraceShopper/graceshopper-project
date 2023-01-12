@@ -53,6 +53,9 @@ const singleProductSlice = createSlice({
     builder.addCase(editSingleProduct.fulfilled, (state, action) => {
       return action.payload;
     });
+    builder.addCase(addSingleProduct.fulfilled, (state, action) => {
+      state.push(action.payload);
+    });
   },
 });
 
