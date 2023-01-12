@@ -6,6 +6,7 @@ import {
   selectCart,
   createOrderAsync,
 } from "./shoppingCartSlice";
+import { Checkout } from "../checkout/Checkout"
 import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
@@ -25,7 +26,7 @@ const ShoppingCart = ({ shoppingCart }) => {
   }, [dispatch]);
   return (
     <div className="all-items">
-      <h1>Shopping Cart!</h1>
+      <h1>Shopping Cart</h1>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -96,16 +97,18 @@ const ShoppingCart = ({ shoppingCart }) => {
           );
         })}
       </Grid>
+
+      <Link to='/checkout'>
       <button
-        type="submit"
-        onClick={async (evt) => {
-          evt.preventDefault();
-          await dispatch(createOrderAsync(cart));
-        }}
-      >
-        Checkout!
+        class="button"
+        // onClick={async (evt) => {
+        //   evt.preventDefault();
+        //   await dispatch(createOrderAsync(cart));
+        // }}
+      >Checkout
       </button>
-      <Link to="/">Cancel</Link>
+      </Link>
+      <Link to="/products">Cancel</Link>
     </div>
   );
 };
