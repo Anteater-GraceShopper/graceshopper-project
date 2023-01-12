@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addProductAsync } from "../products/productsSlice";
 import { TextField, Grid, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import Stack from "@mui/material";
 const AddProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,21 +55,29 @@ const AddProduct = () => {
         container
         alignItems="center"
         justifyContent="center"
-        direction="column">
+        direction="column"
+        sx={{
+          mt: 2,
+        }}>
         <label align="center" className="header">
           Add a new product
         </label>
-        <form align="center" className="form" onSubmit={handleSubmit}>
+        <form align="center" className="add-form" onSubmit={handleSubmit}>
           <Grid
             item
             sx={{
               mt: 2,
             }}>
             <TextField
-              sx={{ input: { bgcolor: "white" } }}
+              sx={{
+                input: {
+                  bgcolor: "white",
+                },
+              }}
               label="Product Name"
               value={name}
               onChange={nameHandler}
+              variant="outlined"
             />
           </Grid>
           <Grid
@@ -109,7 +117,11 @@ const AddProduct = () => {
               onChange={imageHandler}
             />
           </Grid>
-          <Grid>
+          <Grid
+            item
+            sx={{
+              mt: 2,
+            }}>
             <TextField
               sx={{ input: { bgcolor: "white" } }}
               label="Description"
