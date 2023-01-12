@@ -2,7 +2,8 @@
 
 const {
   db,
-  models: { User, Product, Cart, Order },
+  Cart,
+  models: { User, Product, Order },
 } = require("../server/db");
 
 /**
