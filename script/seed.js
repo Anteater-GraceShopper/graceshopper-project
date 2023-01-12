@@ -201,6 +201,8 @@ async function seed() {
   ]);
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
+  console.log("LOOK USER", Object.keys(User.prototype));
+  console.log("LOOK OBJECT", Object.keys(Order.prototype));
 
   return {
     users: {

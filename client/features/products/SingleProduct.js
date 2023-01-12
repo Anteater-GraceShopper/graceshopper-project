@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { me } from "../auth/authSlice";
+import { addToCartAsync } from "../shoppingCart/shoppingCartSlice";
+import { addProductAsync } from "./productsSlice";
 import {
   addSingleProduct,
   fetchSingleProduct,
@@ -16,6 +19,8 @@ import {
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const product = useSelector(selectSingleProduct);
+  const user = useSelector((state) => state.auth.me);
+  console.log("USER", user);
   const { name, price, imageUrl, description } = product;
   const { productId } = useParams();
 
@@ -38,9 +43,7 @@ const SingleProduct = () => {
         type="submit"
         onClick={async (evt) => {
           evt.preventDefault();
-          await dispatch(
-            addSingleProduct(product.id, product.quantity, product.price)
-          );
+          await dispatch(addToCartAsync(productId, user.id));
         }}
       >
         Add to Cart
