@@ -38,16 +38,30 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+// router.delete("/:productId", async (req, res, next) => {
+//   try {
+//     await Product.destroy({
+//       where: {
+//         id: req.params.productId,
+//       },
+//     });
+//     res.json(req.params.productId);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 router.delete("/:productId", async (req, res, next) => {
   try {
-    await Product.destroy({
-      where: {
-        id: req.params.productId,
-      },
-    });
-    res.json(req.params.productId);
-  } catch (error) {
-    next(error);
+    const deletedProduct = await Product.findByPk(req.params.productId);
+    if (deletedProduct) {
+      await deletedProduct.destroy();
+      res.json(deletedProduct);
+    } else {
+      console.log("nothing to be deleted");
+    }
+  } catch (err) {
+    next(err);
   }
 });
 module.exports = router;

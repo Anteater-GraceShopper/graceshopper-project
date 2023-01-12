@@ -1,13 +1,16 @@
+import Typography from "@mui/material/Typography";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectProducts, fetchProductsAsync } from "./productsSlice";
 import { Link } from "react-router-dom";
-import { me } from "../../app/store";
-import Typography from "@mui/material/Typography";
+import {
+  deleteProductAsync,
+  fetchProductsAsync,
+  selectProducts,
+} from "./productsSlice";
 
-import CardMedia from "@mui/material/CardMedia";
 import { CardContent } from "@mui/material";
 import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 
 import Grid from "@mui/material/Grid";
 const Products = () => {
@@ -25,7 +28,8 @@ const Products = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         sx={{
           justifyContent: "center",
-        }}>
+        }}
+      >
         {products && products.length
           ? products.map((product) => {
               return (
@@ -37,7 +41,8 @@ const Products = () => {
                       ml: 10,
                       mb: 3,
                       padding: "0.1em",
-                    }}>
+                    }}
+                  >
                     <CardMedia
                       component="img"
                       image={product.imageUrl}
@@ -49,18 +54,27 @@ const Products = () => {
                         <Typography
                           variant="body2"
                           color="text.secondary"
-                          align="center">
+                          align="center"
+                        >
                           {product.name}
                         </Typography>
                       </Link>
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        align="center">
+                        align="center"
+                      >
                         {product.price}
                       </Typography>
                     </CardContent>
-                    {isAdmin ? <button>Delete</button> : null}
+                    {isAdmin ? (
+                      <button
+                        color="red"
+                        onClick={() => dispatch(deleteProductAsync(product.id))}
+                      >
+                        Delete From Inventory
+                      </button>
+                    ) : null}
                   </Card>
                 </div>
               );
