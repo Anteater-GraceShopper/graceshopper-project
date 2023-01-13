@@ -7,13 +7,10 @@ import {
   createOrderAsync,
 } from "./shoppingCartSlice";
 import { Link } from "react-router-dom";
-
 import Typography from "@mui/material/Typography";
-
 import CardMedia from "@mui/material/CardMedia";
 import { CardContent } from "@mui/material";
 import Card from "@mui/material/Card";
-
 import Grid from "@mui/material/Grid";
 
 const ShoppingCart = ({ shoppingCart }) => {
