@@ -5,6 +5,7 @@ import {
   selectCart,
   deleteCartProductAsync
  } from "../shoppingCart/shoppingCartSlice";
+ import { selectSingleUser } from "../adminView/singleUserSlice";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import { CardContent } from "@mui/material";
@@ -14,13 +15,22 @@ import Grid from "@mui/material/Grid";
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const cart = useSelector(selectCart);
+  const user = useSelector(selectSingleUser);
+  const cart = useSelector(selectCart)
 
+console.log(user, "HELLO")
 console.log(cart)
 
   useEffect(() => {
     dispatch(fetchCartAsync());
   }, [dispatch]);
+  console.log(user)
+  console.log(cart)
+
+  const cartTotal = () => {
+    let total = 0;
+    return total
+  }
 
   return (
 <div className="all-items">
@@ -98,7 +108,7 @@ console.log(cart)
       <Link to='/orderconfirmation'>
       <button
         class="button"
-      >Checkout
+      >Purchase
       </button>
       </Link>
       <Link to="/cart">Cancel</Link>
