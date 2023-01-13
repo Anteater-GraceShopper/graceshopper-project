@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCartAsync,
+  fetchOrderAsync,
   deleteCartProductAsync,
   selectCart,
   createOrderAsync,
 } from "./shoppingCartSlice";
-import { useParams } from "react-router-dom";
-import { Checkout } from "../checkout/Checkout";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
@@ -20,7 +18,7 @@ const ShoppingCart = ({ shoppingCart }) => {
   const cart = useSelector(selectCart);
   console.log(cart);
   useEffect(() => {
-    dispatch(fetchCartAsync());
+    dispatch(fetchOrderAsync());
   }, [dispatch]);
   return (
     <div className="all-items">
@@ -84,7 +82,7 @@ const ShoppingCart = ({ shoppingCart }) => {
                           product.price
                         )
                       );
-                      await dispatch(fetchCartAsync());
+                      await dispatch(fetchOrderAsync());
                     }}
                   >
                     Delete Item
