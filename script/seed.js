@@ -1,10 +1,6 @@
 "use strict";
 
-const {
-  db,
-  Cart,
-  models: { User, Product, Order },
-} = require("../server/db");
+const { db, Cart, Order, User, Product } = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -201,8 +197,6 @@ async function seed() {
   ]);
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
-  console.log("LOOK USER", Object.keys(User.prototype));
-  console.log("LOOK OBJECT", Object.keys(Order.prototype));
 
   return {
     users: {
