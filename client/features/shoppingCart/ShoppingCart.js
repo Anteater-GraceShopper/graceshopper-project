@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCartAsync,
   deleteCartProductAsync,
-  selectCart,
+  selectOrder,
+  fetchOrderAsync,
   createOrderAsync,
 } from "./shoppingCartSlice";
-import { Checkout } from "../checkout/Checkout"
+import { useParams } from "react-router-dom";
+import { Checkout } from "../checkout/Checkout";
 import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
@@ -17,13 +19,14 @@ import Card from "@mui/material/Card";
 
 import Grid from "@mui/material/Grid";
 
-const ShoppingCart = ({ shoppingCart }) => {
+const ShoppingCart = () => {
   const dispatch = useDispatch();
-  const cart = useSelector(selectCart);
-  console.log(cart);
+  const { id } = useParams();
+  const order = useSelector(selectOrder);
+  console.log(order);
   useEffect(() => {
-    dispatch(fetchCartAsync());
-  }, [dispatch]);
+    dispatch(fetchOrderAsync(id));
+  }, [dispatch, id]);
   return (
     <div className="all-items">
       <h1>Shopping Cart</h1>
@@ -35,12 +38,12 @@ const ShoppingCart = ({ shoppingCart }) => {
           justifyContent: "center",
         }}
       >
-        {cart.length < 1 && (
+        {order.length < 1 && (
           <div>
             <h2>Cart is empty!</h2>
           </div>
         )}
-        {cart.map((product) => {
+        {order.map((product) => {
           return (
             <div key={product.id}>
               <Card
@@ -98,15 +101,16 @@ const ShoppingCart = ({ shoppingCart }) => {
         })}
       </Grid>
 
-      <Link to='/checkout'>
-      <button
-        class="button"
-        // onClick={async (evt) => {
-        //   evt.preventDefault();
-        //   await dispatch(createOrderAsync(cart));
-        // }}
-      >Checkout
-      </button>
+      <Link to="/checkout">
+        <button
+          class="button"
+          // onClick={async (evt) => {
+          //   evt.preventDefault();
+          //   await dispatch(createOrderAsync(cart));
+          // }}
+        >
+          Checkout
+        </button>
       </Link>
       <Link to="/products">Cancel</Link>
     </div>
