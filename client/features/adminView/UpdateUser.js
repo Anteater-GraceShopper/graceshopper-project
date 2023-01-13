@@ -6,34 +6,46 @@ import {
   selectSingleUser,
   editSingleUser,
 } from "./singleUserSlice";
-import { Select, MenuItem } from "@mui/material";
-import UpdateUser from "./UpdateUser";
+
 // import Grid from "@mui/material/Grid";
 // import CardMedia from "@mui/material/CardMedia";
 // import { CardContent } from "@mui/material";
 // import Card from "@mui/material/Card";
 // import Typography from "@mui/material/Typography";
 
-const SingleUser = () => {
+const UpdateUser = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectSingleUser);
 
   const { userId } = useParams();
-
+  const [isAdmin, setAdmin] = useState(false);
   useEffect(() => {
     dispatch(fetchSingleUser(userId));
   }, [dispatch]);
 
+  const handleAdmin = (e) => {
+    setAdmin(e.target.value);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch(editSingleUser({ userId, isAdmin }));
+  };
   console.log(user.isAdmin);
   return (
     <div>
-      <p>
-        {user.first} {user.last}
-      </p>
-      {user.isAdmin ? <p>Admin</p> : <p>Customer</p>}
-      <UpdateUser />
+      <form className="update-user" onSubmit={handleSubmit}>
+        <select value={isAdmin} onChange={handleAdmin}>
+          <option value="true" onChange={handleAdmin}>
+            Admin
+          </option>
+          <option value="false" onChange={handleAdmin}>
+            Customer
+          </option>
+        </select>
+        <button type="submit">Update admin</button>
+      </form>
     </div>
   );
 };
 
-export default SingleUser;
+export default UpdateUser;
