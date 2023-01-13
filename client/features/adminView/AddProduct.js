@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProductAsync } from "../products/productsSlice";
-import { TextField, Grid, Button } from "@mui/material";
+import { TextField, Grid, Button, InputAdornment } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Stack from "@mui/material";
+
 const AddProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -59,9 +59,9 @@ const AddProduct = () => {
         sx={{
           mt: 2,
         }}>
-        <label align="center" className="header">
+        <h3 align="center" className="header">
           Add a new product
-        </label>
+        </h3>
         <form align="center" className="add-form" onSubmit={handleSubmit}>
           <Grid
             item

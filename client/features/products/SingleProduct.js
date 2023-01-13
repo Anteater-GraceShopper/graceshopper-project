@@ -47,29 +47,30 @@ const SingleProduct = () => {
         sx={{
           justifyContent: "center",
           mt: 30,
-        }}
-      >
-        <Card raised sx={{ width: 600, height: 850, ml: 10, mt: 8 }}>
+        }}>
+        <Card
+          raised
+          sx={{ width: 600, height: "90vh", ml: 5, mt: 8, mb: 8, mr: 5 }}>
+
           <div key={productId}>
-            <CardMedia
-              component="img"
-              image={imageUrl}
-              height="600"
-              width="600"
-            />
+            <Grid align="center">
+              <CardMedia
+                component="img"
+                image={imageUrl}
+                sx={{ height: 500, width: 500, mt: 1 }}
+              />
+            </Grid>
             <CardContent align="center">
-              <Typography variant="h5" align="center">
-                Name
-              </Typography>
               <Typography variant="p" align="center">
                 {name}
               </Typography>
-              <Typography variant="h5" align="center">
-                Description
-              </Typography>
+              <br />
+              <br />
               <Typography variant="p" align="center">
                 {description}
               </Typography>
+              <br />
+              <br />
               <Typography variant="h5" align="center">
                 Price
               </Typography>
@@ -78,18 +79,10 @@ const SingleProduct = () => {
               </Typography>
             </CardContent>
           </div>
-          <CardActions
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              "&:hover": {
-                cursor: "pointer",
-              },
-            }}
-          >
+          <Grid align="center">
+
             <Button
               type="submit"
-              justifyContent="center"
               display="flex"
               onClick={async (evt) => {
                 evt.preventDefault();
@@ -98,11 +91,12 @@ const SingleProduct = () => {
             >
               Add to Cart
             </Button>
-          </CardActions>
+          </Grid>
         </Card>
 
         {isAdmin ? (
-          <Card raised sx={{ width: 500, height: 500, ml: 10, mt: 8 }}>
+          <Card raised sx={{ width: 500, height: 500, ml: 5, mt: 8, mr: 5 }}>
+
             <EditProduct />
           </Card>
         ) : null}

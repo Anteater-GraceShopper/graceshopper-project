@@ -132,7 +132,12 @@ const EditProduct = () => {
               variant="contained"
               className="submit-button"
               type="submit"
-              sx={{ bgcolor: "#f7b801" }}>
+              sx={{
+                bgcolor: "#28536B",
+                "&:hover": {
+                  bgcolor: "#598588",
+                },
+              }}>
               Submit
             </Button>
           </Grid>

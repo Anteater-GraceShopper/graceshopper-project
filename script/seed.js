@@ -10,7 +10,7 @@ const products = [
   {
     name: "Honey Stinger Waffles",
     description:
-      "A thin layer of our classic honey sandwiched between two thin waffles.",
+      "With no artificial sweeteners, colors, or preservatives, Honey Stinger energy waffles sweeten the burn to push through any challenge.",
     imageUrl: "https://m.media-amazon.com/images/I/61TvdNAwviL.jpg",
     price: 26.99,
     quantity: 200,
@@ -18,7 +18,7 @@ const products = [
   {
     name: "Honey Nut Cheerios",
     description:
-      "First ingredient. Made with real honey. Made with real honey & natural almond flavor. A-maze-ing taste starts here. A buzz-worthy choice! Real honey, a-maze-ing taste!",
+      "First ingredient. Made with real honey. Made with real honey & natural almond flavor. A-maze-ing taste starts here.",
     imageUrl: "https://m.media-amazon.com/images/I/81tro-cc6wL.jpg",
     price: 4.99,
     quantity: 200,
@@ -42,8 +42,7 @@ const products = [
   },
   {
     name: "Burt's Bees Lip Balm",
-    description:
-      "Variety pack. Each lip balm is 100% natural origin and power-packed with responsibly sourced Beeswax to condition and antioxidant-rich Vitamin E to richly moisturize and soften dry lips.",
+    description: "Variety pack. Each lip balm is 100% natural.",
     imageUrl: "https://m.media-amazon.com/images/I/81li5b5WfVL.jpg",
     price: 14.99,
     quantity: 200,
@@ -51,7 +50,7 @@ const products = [
   {
     name: "Lavender & Honey Handcream",
     description:
-      "Burt’s Bees® Hand Cream with Shea Butter softens dry hands and indulges the senses with the relaxing scent of Lavender & Honey. This luxurious hand cream nourishes hands with all day moisture and a rich buttery texture that goes on smoothly and leaves hands feeling silky smooth.",
+      "Burt’s Bees® Hand Cream with Shea Butter softens dry hands and indulges the senses with the relaxing scent of Lavender & Honey.",
     imageUrl:
       "https://i5.walmartimages.com/asr/3b2226e2-baa9-4034-bf8b-736e19ffeeed.0c927204e0d8f5c6f0ea5fe182274293.jpeg",
     price: 8.99,
@@ -60,7 +59,7 @@ const products = [
   {
     name: "Honey and Bilberry Foot Cream",
     description:
-      "From Burt's Bees. Gently exfoliate and intensely moisturize dry, overworked feet with this all-in-one cream. Bilberry Extract works to soften calluses while Honey, Jojoba Butter and Rosemary Extract replenish moisture—making this the newest essential in your self-care regimen.",
+      "From Burt's Bees. Gently exfoliate and intensely moisturize dry, overworked feet with this all-in-one cream.",
     imageUrl: "https://images.heb.com/is/image/HEBGrocery/001033835",
     price: 13.99,
     quantity: 10,
@@ -68,7 +67,7 @@ const products = [
   {
     name: "Wanna Bee Eyeshadow Palette",
     description:
-      "From Colourpop. Get buzz-worthy colour with this palette full of warm, yummy neutrals. Features a mix of yellows, oranges, and rich chocolate in buttery matte and shimmering metallic finishes for the most bee-autiful looks.",
+      "From Colourpop. Features a mix of yellows, oranges, and rich chocolate matte and shimmery finishes.",
     imageUrl:
       "https://cdn.shopify.com/s/files/1/1338/0845/products/6806968008786-Wanna-Bee-EyePalette-WannaBee-3_800x1200.jpg?v=1668570974",
     price: 17.99,
@@ -93,7 +92,7 @@ const products = [
   {
     name: "Honey Bun Candle",
     description:
-      "Fill your home with the smell of Little Debbie Honey Buns. It’s the ideal way to enjoy a sweet warmth that only true Honey Bun fans will recognize. Trust us, this candle is a new classic that is perfect for gifting or treating yourself to. Available for a limited time in a 14-ounce soy wax tin.",
+      "Fill your home with the smell of Little Debbie Honey Buns. Available for a limited time in a 14-ounce soy wax tin.",
     imageUrl:
       "https://cdn.shopify.com/s/files/1/2394/2207/products/Little_Debbie_Honey_Bun_Candle_GroupShot_E.jpg?v=1653077409&width=1445",
     price: 29.99,
@@ -102,7 +101,7 @@ const products = [
   {
     name: "Honey Buns",
     description:
-      "Soft, golden and tasty, Little Debbie Honey Buns are the sweet and flavorful snack that satisfies all day. Prepared with hints of cinnamon, a touch of honey, and dripping with a light glaze, it’s easy to understand why this delicious pastry swirl is a Little Debbie favorite.",
+      "Soft, golden and tasty, Little Debbie Honey Buns are prepared with cinnamon, honey, and a light glaze.",
     imageUrl: "https://m.media-amazon.com/images/I/81JHp82ZI5L.jpg",
     price: 35.99,
     quantity: 200,
@@ -110,7 +109,7 @@ const products = [
   {
     name: "Organic Bee Pollen",
     description:
-      "Bee pollen is considered by renowned healthcare specialists & nutrition experts to be a superfood fit for modern, fast-paced & hectic lifestyle.",
+      "Bee pollen is considered by renowned healthcare specialists & nutrition experts to be a superfood fit for a modern lifestyle.",
     imageUrl: "https://m.media-amazon.com/images/I/81RX6OedCbL._AC_SX679_.jpg",
     price: 20.99,
     quantity: 200,
@@ -141,7 +140,7 @@ const products = [
   {
     name: "Honey Stinger Nut and Seed Bar",
     description:
-      "Recover from tough workouts with the right balance of sweet and salty in the Almond Pumpkin Seed Nut + Seed Bar. Includes honey for the sweetness you crave and the crunch of roasted almonds and pumpkin seeds for a satiating recharge.",
+      "Recover from tough workouts with the right balance of sweet and salty in the Almond Pumpkin Seed Nut + Seed Bar.",
     imageUrl:
       "https://cdn.shopify.com/s/files/1/0498/2374/4162/products/VarietyPack_Bars-Nut_Seed_4Pk_1000x.jpg?v=1648512848",
     price: 33.99,
