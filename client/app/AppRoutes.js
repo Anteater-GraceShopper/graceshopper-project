@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import EditProduct from "../features/adminView/EditProduct";
 import AuthForm from "../features/auth/AuthForm";
 import Checkout from "../features/checkout/Checkout";
+import OrderConfirmation from "../features/checkout/OrderConfirmation";
 import Home from "../features/home/Home";
 import Products from "../features/products/Products";
 import SingleProduct from "../features/products/SingleProduct";
@@ -36,6 +37,7 @@ const AppRoutes = () => {
           <Route path="/*" element={<Home />} />
           <Route path="/products/:productId" element={<SingleProduct />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/orderconfirmation" element={<OrderConfirmation />} />
           <Route path="/editproduct" element={<EditProduct />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/users" element={<AllUsers />} />
@@ -49,6 +51,7 @@ const AppRoutes = () => {
           <Route path="/*" element={<Home />} />
           <Route path="/products/:productId" element={<SingleProduct />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/orderconfirmation" element={<OrderConfirmation />} />
         </Routes>
       ) : (
         <Routes>

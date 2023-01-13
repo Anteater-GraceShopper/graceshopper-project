@@ -6,7 +6,6 @@ import {
   selectCart,
   createOrderAsync,
 } from "./shoppingCartSlice";
-import { Checkout } from "../checkout/Checkout"
 import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
@@ -101,10 +100,6 @@ const ShoppingCart = ({ shoppingCart }) => {
       <Link to='/checkout'>
       <button
         class="button"
-        // onClick={async (evt) => {
-        //   evt.preventDefault();
-        //   await dispatch(createOrderAsync(cart));
-        // }}
       >Checkout
       </button>
       </Link>
