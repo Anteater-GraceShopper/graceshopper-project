@@ -28,6 +28,7 @@ const SingleProduct = () => {
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
 
   const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
 
   const { name, price, imageUrl, description } = product;
   const { productId } = useParams();
@@ -46,7 +47,8 @@ const SingleProduct = () => {
         sx={{
           justifyContent: "center",
           mt: 30,
-        }}>
+        }}
+      >
         <Card raised sx={{ width: 600, height: 850, ml: 10, mt: 8 }}>
           <div key={productId}>
             <CardMedia
@@ -83,17 +85,17 @@ const SingleProduct = () => {
               "&:hover": {
                 cursor: "pointer",
               },
-            }}>
+            }}
+          >
             <Button
               type="submit"
               justifyContent="center"
               display="flex"
               onClick={async (evt) => {
                 evt.preventDefault();
-                await dispatch(
-                  addSingleProduct(product.id, product.quantity, product.price)
-                );
-              }}>
+                await dispatch(addToCartAsync({ userId, productId }));
+              }}
+            >
               Add to Cart
             </Button>
           </CardActions>
@@ -101,7 +103,6 @@ const SingleProduct = () => {
 
         {isAdmin ? (
           <Card raised sx={{ width: 500, height: 500, ml: 10, mt: 8 }}>
-         
             <EditProduct />
           </Card>
         ) : null}
