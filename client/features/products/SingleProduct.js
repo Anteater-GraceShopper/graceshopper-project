@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { me } from "../auth/authSlice";
+import { addToCartAsync } from "../shoppingCart/shoppingCartSlice";
+import { addProductAsync } from "./productsSlice";
 import {
   addSingleProduct,
   fetchSingleProduct,
@@ -21,7 +24,11 @@ import {
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const product = useSelector(selectSingleProduct);
+
   const isAdmin = useSelector((state) => state.auth.me.isAdmin);
+
+  const user = useSelector((state) => state.auth.me);
+
   const { name, price, imageUrl, description } = product;
   const { productId } = useParams();
 
@@ -94,7 +101,7 @@ const SingleProduct = () => {
 
         {isAdmin ? (
           <Card raised sx={{ width: 500, height: 500, ml: 10, mt: 8 }}>
-            {" "}
+         
             <EditProduct />
           </Card>
         ) : null}

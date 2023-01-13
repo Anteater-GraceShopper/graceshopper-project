@@ -11,26 +11,44 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-//add ternery --if cart exists, add to cart; if not, create cart
-router.post("/", async (req, res, next) => {
-  try {
-    res.send(await Cart.create(req.body));
-  } catch (err) {
-    next(err);
-  }
-});
+
+// router.post("/", async (req, res, next) => {
+//   try {
+//     res.send(await Cart.create(req.body));
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 //how do we determine if the user is logged in or not?
 
 //update the product number
-router.put('/', async (req, res, next) => {
-  try {
-    const product = await Cart.findByPk(req.params.productId);
-    res.send(await Cart.update(product));
-  } catch (err) {
-    next(err);
-  }
-});
+// router.put("/:productId", async (req, res, next) => {
+//   try {
+//     const product = await Cart.findByPk(req.params.productId);
+//     res.send(await Cart.update(product));
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+// router.get("/order/:orderId", async (req, res, next) => {
+//   try {
+//     const orderId = req.params.orderId;
+//     const cart = await Cart_Item.findAll({
+//       where: {
+//         orderId: orderId,
+//       },
+//     });
+//     res.status(200).json(cart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+// router.put("/cart/addToCart", async (req, res, next) => {
+
+// }
 
 //'checkout'--move from cart to order
 router.put("/checkout", async (req, res, next) => {
@@ -47,6 +65,21 @@ router.put("/checkout", async (req, res, next) => {
     next(err);
   }
 });
+
+// router.put("/", async (req, res, next) => {
+//   try {
+//     const { productId } = req.body;
+//     // const { orderId } = req.body;
+
+//     const [Cart, created] = await Cart.upsert({
+//       productId: productId,
+//       // orderId: orderId,
+//     });
+//     res.json(Cart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 //delete item from cart
 router.delete("/:productId", async (req, res, next) => {
