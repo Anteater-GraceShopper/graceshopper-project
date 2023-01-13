@@ -11,8 +11,7 @@ const products = [
     name: "Honey Stinger Waffles",
     description:
       "A thin layer of our classic honey sandwiched between two thin waffles.",
-    imageUrl:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLaQakPkeR06wbHDkKX_eKfeVfXWQuU_vbng&usqp=CAU",
+    imageUrl: "https://m.media-amazon.com/images/I/61TvdNAwviL.jpg",
     price: 26.99,
     quantity: 200,
   },
@@ -37,7 +36,7 @@ const products = [
     name: "Raw Honeycomb",
     description: "Organic, raw honeycomb harvested in California. One piece.",
     imageUrl:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCshP1wweVjqWsK3RB0Tx9S8g-t0sHsdg4l2dS_2SkbUvI955hT7Qi3jFRHmTJ1HbHSWo&usqp=CAU",
+      "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/honeycomb-1296x728-feature.jpg?w=1155&h=1528",
     price: 29.99,
     quantity: 200,
   },
@@ -50,7 +49,7 @@ const products = [
     quantity: 200,
   },
   {
-    name: "Burt's Bees Lavender & Honey Handcream",
+    name: "Lavender & Honey Handcream",
     description:
       "Burt’s Bees® Hand Cream with Shea Butter softens dry hands and indulges the senses with the relaxing scent of Lavender & Honey. This luxurious hand cream nourishes hands with all day moisture and a rich buttery texture that goes on smoothly and leaves hands feeling silky smooth.",
     imageUrl:
@@ -59,17 +58,17 @@ const products = [
     quantity: 200,
   },
   {
-    name: "Burt's Bees Honey and Bilberry Foot Cream",
+    name: "Honey and Bilberry Foot Cream",
     description:
-      "Gently exfoliate and intensely moisturize dry, overworked feet with this all-in-one cream. Bilberry Extract works to soften calluses while Honey, Jojoba Butter and Rosemary Extract replenish moisture—making this the newest essential in your self-care regimen.",
+      "From Burt's Bees. Gently exfoliate and intensely moisturize dry, overworked feet with this all-in-one cream. Bilberry Extract works to soften calluses while Honey, Jojoba Butter and Rosemary Extract replenish moisture—making this the newest essential in your self-care regimen.",
     imageUrl: "https://images.heb.com/is/image/HEBGrocery/001033835",
     price: 13.99,
     quantity: 10,
   },
   {
-    name: "Wanna Bee Colourpop Eyeshadow Palette",
+    name: "Wanna Bee Eyeshadow Palette",
     description:
-      "Get buzz-worthy colour with this palette full of warm, yummy neutrals. Features a mix of yellows, oranges, and rich chocolate in buttery matte and shimmering metallic finishes for the most bee-autiful looks.",
+      "From Colourpop. Get buzz-worthy colour with this palette full of warm, yummy neutrals. Features a mix of yellows, oranges, and rich chocolate in buttery matte and shimmering metallic finishes for the most bee-autiful looks.",
     imageUrl:
       "https://cdn.shopify.com/s/files/1/1338/0845/products/6806968008786-Wanna-Bee-EyePalette-WannaBee-3_800x1200.jpg?v=1668570974",
     price: 17.99,
@@ -87,8 +86,7 @@ const products = [
   {
     name: "Honey Soap",
     description: "Honey soap with jojoba oil",
-    imageUrl:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXXS94PrLCIevExJ1Ui9D4GTeJpSVq5vlxJg&usqp=CAU",
+    imageUrl: "https://www.betterbee.com/images/soapn1_l.jpg",
     price: 8.99,
     quantity: 200,
   },
@@ -105,8 +103,7 @@ const products = [
     name: "Honey Buns",
     description:
       "Soft, golden and tasty, Little Debbie Honey Buns are the sweet and flavorful snack that satisfies all day. Prepared with hints of cinnamon, a touch of honey, and dripping with a light glaze, it’s easy to understand why this delicious pastry swirl is a Little Debbie favorite.",
-    imageUrl:
-      "https://m.media-amazon.com/images/I/61RMCjZhJSL._SX679_PIbundle-8,TopRight,0,0_SX679SY382SH20_.jpg",
+    imageUrl: "https://m.media-amazon.com/images/I/81JHp82ZI5L.jpg",
     price: 35.99,
     quantity: 200,
   },
@@ -136,7 +133,8 @@ const products = [
   {
     name: "Pure Raw Honey",
     description: "Bee flower honey perfect for helping out the immune system.",
-    imageUrl: "https://m.media-amazon.com/images/I/71n+lbqsTKL._SY606_.jpg",
+    imageUrl:
+      "https://cdn.shopify.com/s/files/1/0271/6345/9637/products/hg-organic-1lb--ff5849ef-1471b8d9.jpg?v=1661966478&width=2400",
     price: 40.99,
     quantity: 200,
   },
@@ -145,7 +143,7 @@ const products = [
     description:
       "Recover from tough workouts with the right balance of sweet and salty in the Almond Pumpkin Seed Nut + Seed Bar. Includes honey for the sweetness you crave and the crunch of roasted almonds and pumpkin seeds for a satiating recharge.",
     imageUrl:
-      "https://m.media-amazon.com/images/I/41ChyFikMEL._SX300_SY300_QL70_FMwebp_.jpg",
+      "https://cdn.shopify.com/s/files/1/0498/2374/4162/products/VarietyPack_Bars-Nut_Seed_4Pk_1000x.jpg?v=1648512848",
     price: 33.99,
     quantity: 200,
   },

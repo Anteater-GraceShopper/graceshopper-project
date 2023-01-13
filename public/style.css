@@ -17,7 +17,9 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-
+nav a:hover {
+  color: #28536b;
+}
 /* form div {
   margin: 1em;
   display: inline-block;

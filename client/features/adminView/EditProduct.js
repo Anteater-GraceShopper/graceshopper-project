@@ -20,11 +20,11 @@ const EditProduct = () => {
   };
 
   const priceHandler = (event) => {
-    setName(event.target.value);
+    setPrice(event.target.value);
   };
 
   const quantityHandler = (event) => {
-    setName(event.target.value);
+    setQuantity(event.target.value);
   };
 
   const imageHandler = (event) => {
@@ -32,7 +32,7 @@ const EditProduct = () => {
   };
 
   const descriptionHandler = (event) => {
-    setName(event.target.value);
+    setDescription(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -52,7 +52,6 @@ const EditProduct = () => {
     setQuantity("");
     setImageUrl("");
     setDescription("");
-    navigate("/products");
   };
 
   return (
@@ -62,7 +61,7 @@ const EditProduct = () => {
         alignItems="center"
         justifyContent="center"
         direction="column"
-      >
+        sx={{ mt: 2 }}>
         <label align="center" className="header">
           Edit product
         </label>
@@ -71,8 +70,7 @@ const EditProduct = () => {
             item
             sx={{
               mt: 2,
-            }}
-          >
+            }}>
             <TextField
               sx={{ input: { bgcolor: "white" } }}
               label="Product Name"
@@ -84,8 +82,7 @@ const EditProduct = () => {
             item
             sx={{
               mt: 2,
-            }}
-          >
+            }}>
             <TextField
               sx={{ input: { bgcolor: "white" } }}
               label="Price"
@@ -97,8 +94,7 @@ const EditProduct = () => {
             item
             sx={{
               mt: 2,
-            }}
-          >
+            }}>
             <TextField
               sx={{ input: { bgcolor: "white" } }}
               inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
@@ -111,8 +107,7 @@ const EditProduct = () => {
             item
             sx={{
               mt: 2,
-            }}
-          >
+            }}>
             <TextField
               sx={{ input: { bgcolor: "white" } }}
               label="Image URL"
@@ -120,7 +115,7 @@ const EditProduct = () => {
               onChange={imageHandler}
             />
           </Grid>
-          <Grid>
+          <Grid item sx={{ mt: 2 }}>
             <TextField
               sx={{ input: { bgcolor: "white" } }}
               label="Description"
@@ -132,9 +127,12 @@ const EditProduct = () => {
             item
             sx={{
               mt: 2,
-            }}
-          >
-            <Button variant="contained" className="submit-button" type="submit">
+            }}>
+            <Button
+              variant="contained"
+              className="submit-button"
+              type="submit"
+              sx={{ bgcolor: "#f7b801" }}>
               Submit
             </Button>
           </Grid>

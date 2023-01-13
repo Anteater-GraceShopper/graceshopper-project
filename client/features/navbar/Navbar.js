@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1, mt: 0 }}>
-      <AppBar position="static" sx={{ bgcolor: "#ffc300" }}>
+      <AppBar position="static" sx={{ bgcolor: "#f7b801" }}>
         <Toolbar>
           <Typography variant="h5" sx={{ color: "#000000" }}>
             Everything Honey

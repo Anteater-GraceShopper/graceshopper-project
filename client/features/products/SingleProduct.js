@@ -9,18 +9,26 @@ import {
   fetchSingleProduct,
   selectSingleProduct,
 } from "./singleProductSlice";
+import EditProduct from "../adminView/EditProduct";
 
-// import Grid from "@mui/material/Grid";
-// import CardMedia from "@mui/material/CardMedia";
-// import { CardContent } from "@mui/material";
-// import Card from "@mui/material/Card";
-// import Typography from "@mui/material/Typography";
+import {
+  CardActions,
+  Typography,
+  CardMedia,
+  Card,
+  CardContent,
+  Grid,
+  Button,
+} from "@mui/material";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const product = useSelector(selectSingleProduct);
+
+  const isAdmin = useSelector((state) => state.auth.me.isAdmin);
+
   const user = useSelector((state) => state.auth.me);
-  console.log("USER", user);
+
   const { name, price, imageUrl, description } = product;
   const { productId } = useParams();
 
@@ -30,24 +38,74 @@ const SingleProduct = () => {
 
   return (
     <div className="single-item">
-      <div key={productId}>
-        <h3>Product Name</h3>
-        <p>{name}</p>
-        <h3>Product Description</h3>
-        <p>{description}</p>
-        <h3>Price</h3>
-        <p>{price}</p>
-        <img src={imageUrl} />
-      </div>
-      <button
-        type="submit"
-        onClick={async (evt) => {
-          evt.preventDefault();
-          await dispatch(addToCartAsync(productId, user.id));
-        }}
-      >
-        Add to Cart
-      </button>
+      <Grid
+        container
+        justifyContent="center"
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+        sx={{
+          justifyContent: "center",
+          mt: 30,
+        }}>
+        <Card raised sx={{ width: 600, height: 850, ml: 10, mt: 8 }}>
+          <div key={productId}>
+            <CardMedia
+              component="img"
+              image={imageUrl}
+              height="600"
+              width="600"
+            />
+            <CardContent align="center">
+              <Typography variant="h5" align="center">
+                Name
+              </Typography>
+              <Typography variant="p" align="center">
+                {name}
+              </Typography>
+              <Typography variant="h5" align="center">
+                Description
+              </Typography>
+              <Typography variant="p" align="center">
+                {description}
+              </Typography>
+              <Typography variant="h5" align="center">
+                Price
+              </Typography>
+              <Typography variant="p" align="center">
+                ${price}
+              </Typography>
+            </CardContent>
+          </div>
+          <CardActions
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              "&:hover": {
+                cursor: "pointer",
+              },
+            }}>
+            <Button
+              type="submit"
+              justifyContent="center"
+              display="flex"
+              onClick={async (evt) => {
+                evt.preventDefault();
+                await dispatch(
+                  addSingleProduct(product.id, product.quantity, product.price)
+                );
+              }}>
+              Add to Cart
+            </Button>
+          </CardActions>
+        </Card>
+
+        {isAdmin ? (
+          <Card raised sx={{ width: 500, height: 500, ml: 10, mt: 8 }}>
+         
+            <EditProduct />
+          </Card>
+        ) : null}
+      </Grid>
     </div>
   );
 };
