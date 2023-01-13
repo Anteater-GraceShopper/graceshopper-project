@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCartAsync,
   deleteCartProductAsync,
   selectOrder,
   fetchOrderAsync,
-  createOrderAsync,
 } from "./shoppingCartSlice";
 import { useParams } from "react-router-dom";
 import { Checkout } from "../checkout/Checkout";
@@ -21,12 +19,16 @@ import Grid from "@mui/material/Grid";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  // const { orderId } = useParams();
   const order = useSelector(selectOrder);
+  //   const user = useSelector((state) => state.auth.me);
+  // const userId = user.id;
+  const orderId = order.id;
+  console.log(orderId);
   console.log(order);
   useEffect(() => {
-    dispatch(fetchOrderAsync(id));
-  }, [dispatch, id]);
+    dispatch(fetchOrderAsync(orderId));
+  }, [dispatch, orderId]);
   return (
     <div className="all-items">
       <h1>Shopping Cart</h1>
@@ -89,7 +91,7 @@ const ShoppingCart = () => {
                           product.price
                         )
                       );
-                      await dispatch(fetchCartAsync());
+                      await dispatch(fetchOrderAsync(orderId));
                     }}
                   >
                     Delete Item
@@ -103,7 +105,7 @@ const ShoppingCart = () => {
 
       <Link to="/checkout">
         <button
-          class="button"
+          className="button"
           // onClick={async (evt) => {
           //   evt.preventDefault();
           //   await dispatch(createOrderAsync(cart));
