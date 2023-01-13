@@ -30,7 +30,7 @@ const UpdateUser = () => {
     e.preventDefault();
     await dispatch(editSingleUser({ userId, isAdmin }));
   };
-  console.log(user.isAdmin);
+
   return (
     <div>
       <form className="update-user" onSubmit={handleSubmit}>
