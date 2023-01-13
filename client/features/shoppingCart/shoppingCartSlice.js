@@ -10,14 +10,37 @@ export const fetchCartAsync = createAsyncThunk("cart/fetchAll", async () => {
   }
 });
 
+export const fetchAllOrdersAsync = createAsyncThunk(
+  "cart/fetchAll",
+  async () => {
+    try {
+      const { data } = await axios.get(`/api/cart/`);
+      return data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+export const fetchOrderAsync = createAsyncThunk(
+  "cart/fetchOrder",
+  async (orderId) => {
+    try {
+      const { data } = await axios.get(`/api/order/${orderId}`);
+      return data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
 export const addToCartAsync = createAsyncThunk(
   "order/addToCart",
-  async ({ productId, orderId }) => {
+  async ({ userId, productId }) => {
     try {
-      const { data } = await axios.put("/api/order/:productId/:orderId", {
-        productId,
-        orderId,
-      });
+      console.log("PRODUCT", productId);
+      console.log("USER", userId);
+      const { data } = await axios.put(`/api/order/${userId}/${productId}`);
       return data;
     } catch (error) {
       return error.message;
@@ -66,11 +89,11 @@ export const createOrderAsync = createAsyncThunk(
 );
 
 export const shoppingCartSlice = createSlice({
-  name: "carts",
+  name: "orders",
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchCartAsync.fulfilled, (state, action) => {
+    builder.addCase(fetchOrderAsync.fulfilled, (state, action) => {
       return action.payload;
     });
     builder.addCase(addToCartAsync.fulfilled, (state, action) => {
@@ -88,6 +111,6 @@ export const shoppingCartSlice = createSlice({
   },
 });
 
-export const selectCart = (state) => state.carts;
+export const selectOrder = (state) => state.orders;
 
 export default shoppingCartSlice.reducer;
