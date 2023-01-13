@@ -51,11 +51,6 @@ const SingleProduct = () => {
         <Card
           raised
           sx={{ width: 600, height: "90vh", ml: 5, mt: 8, mb: 8, mr: 5 }}>
-=========
-        }}
-      >
-        <Card raised sx={{ width: 600, height: 850, ml: 10, mt: 8 }}>
->>>>>>>>> Temporary merge branch 2
           <div key={productId}>
             <Grid align="center">
               <CardMedia
@@ -98,9 +93,6 @@ const SingleProduct = () => {
 
         {isAdmin ? (
           <Card raised sx={{ width: 500, height: 500, ml: 5, mt: 8, mr: 5 }}>
-=========
-          <Card raised sx={{ width: 500, height: 500, ml: 10, mt: 8 }}>
->>>>>>>>> Temporary merge branch 2
             <EditProduct />
           </Card>
         ) : null}
