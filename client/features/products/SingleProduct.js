@@ -51,7 +51,6 @@ const SingleProduct = () => {
         <Card
           raised
           sx={{ width: 600, height: "90vh", ml: 5, mt: 8, mb: 8, mr: 5 }}>
-
           <div key={productId}>
             <Grid align="center">
               <CardMedia
@@ -80,15 +79,13 @@ const SingleProduct = () => {
             </CardContent>
           </div>
           <Grid align="center">
-
             <Button
               type="submit"
               display="flex"
               onClick={async (evt) => {
                 evt.preventDefault();
                 await dispatch(addToCartAsync({ userId, productId }));
-              }}
-            >
+              }}>
               Add to Cart
             </Button>
           </Grid>
@@ -96,7 +93,6 @@ const SingleProduct = () => {
 
         {isAdmin ? (
           <Card raised sx={{ width: 500, height: 500, ml: 5, mt: 8, mr: 5 }}>
-
             <EditProduct />
           </Card>
         ) : null}
