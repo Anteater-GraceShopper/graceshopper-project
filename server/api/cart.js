@@ -74,7 +74,7 @@ router.put("/", async (req, res, next) => {
     res.json(Cart);
   } catch (error) {
     next(error);
-  }
+\  }
 });
 
 //delete item from cart
