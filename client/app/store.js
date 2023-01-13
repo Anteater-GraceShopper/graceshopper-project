@@ -11,7 +11,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     products: productsReducer,
-    carts: shoppingCartReducer,
+    orders: shoppingCartReducer,
     users: usersReducer,
     product: singleProductReducer,
     user: singleUserReducer,

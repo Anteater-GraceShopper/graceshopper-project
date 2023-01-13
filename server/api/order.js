@@ -26,17 +26,17 @@ router.get("/:orderId", async (req, res, next) => {
   }
 });
 
-router.put("/:productId/:userId", async (req, res, next) => {
-  const product = await Product.findByPk(req.params.productId);
-  const user = await User.findByPk(req.params.userId, {
-    include: Order,
-    where: {
-      isComplete: false,
-    },
-  });
-  const order = user.orders[0];
-  const newProduct = await order;
-});
+// router.put("/:productId/:userId", async (req, res, next) => {
+//   const product = await Product.findByPk(req.params.productId);
+//   const user = await User.findByPk(req.params.userId, {
+//     include: Order,
+//     where: {
+//       isComplete: false,
+//     },
+//   });
+//   const order = user.orders[0];
+//   const newProduct = await order;
+// });
 
 // router.put("/:productId/:orderId", async (req, res, next) => {
 //   const order = await Order.findByPk(req.params.orderId);
@@ -52,24 +52,22 @@ router.put("/:productId/:userId", async (req, res, next) => {
 //   }
 // });
 
-router.put("/:productId", async (req, res, next) => {
+router.put("/:userId/:productId", async (req, res, next) => {
   try {
-    if (req.user) {
-      let order = await Order.findOne({
-        where: {
-          userId: req.user.id,
-          isComplete: false,
-        },
-      });
-    } else {
-      order = await Order.create();
-    }
+    let order = await Order.findOne({
+      where: {
+        userId: req.params.userId,
+        isComplete: false,
+      },
+    });
+    console.log("THIS IS THE ORDR", order);
     const product = await Product.findOne({
       where: {
         id: req.params.productId,
       },
     });
-    order.addProduct(product);
+    console.log("this is the product", product);
+    await order.addProduct(product);
     res.send(order);
   } catch (error) {
     next(error);
