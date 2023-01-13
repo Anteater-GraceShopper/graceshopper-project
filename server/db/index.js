@@ -16,9 +16,7 @@ Product.belongsToMany(Order, { through: Cart });
 module.exports = {
   db,
   Cart,
-  models: {
-    User,
-    Product,
-    Order,
-  },
+  Order,
+  User,
+  Product,
 };

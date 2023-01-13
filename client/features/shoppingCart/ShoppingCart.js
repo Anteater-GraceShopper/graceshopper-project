@@ -6,6 +6,8 @@ import {
   selectCart,
   createOrderAsync,
 } from "./shoppingCartSlice";
+import { useParams } from "react-router-dom";
+import { Checkout } from "../checkout/Checkout";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";

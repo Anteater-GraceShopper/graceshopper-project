@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  fetchSingleUser,
-  selectSingleUser,
-  editSingleUser,
-} from "./singleUserSlice";
+import { fetchSingleUser, selectSingleUser } from "./singleUserSlice";
 import { Select, MenuItem } from "@mui/material";
 import UpdateUser from "./UpdateUser";
 // import Grid from "@mui/material/Grid";

@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { me } from "../../app/store";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { CardContent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-
+import { CardActions } from "@mui/material";
 import {
   deleteProductAsync,
   fetchProductsAsync,
@@ -31,8 +31,7 @@ const Products = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         sx={{
           justifyContent: "center",
-        }}
-      >
+        }}>
         {products && products.length
           ? products.map((product) => {
               return (
@@ -44,8 +43,7 @@ const Products = () => {
                       ml: 10,
                       mb: 3,
                       padding: "0.1em",
-                    }}
-                  >
+                    }}>
                     <CardMedia
                       component="img"
                       image={product.imageUrl}
@@ -57,29 +55,34 @@ const Products = () => {
                         <Typography
                           variant="body2"
                           color="text.secondary"
-                          align="center"
-                        >
+                          align="center">
                           {product.name}
                         </Typography>
                       </Link>
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        align="center"
-                      >
+                        align="center">
                         {product.price}
                       </Typography>
                     </CardContent>
 
                     {isAdmin ? (
-                      <button
-                        color="red"
-                        onClick={() => dispatch(deleteProductAsync(product.id))}
-                      >
-                        Delete From Inventory
-                      </button>
+                      <CardActions
+                        sx={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          "&:hover": {
+                            cursor: "pointer",
+                          },
+                        }}>
+                        <DeleteIcon
+                          onClick={() =>
+                            dispatch(deleteProductAsync(product.id))
+                          }
+                        />
+                      </CardActions>
                     ) : null}
-
                   </Card>
                 </div>
               );

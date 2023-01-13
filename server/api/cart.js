@@ -32,19 +32,23 @@ router.get("/", async (req, res, next) => {
 //   }
 // });
 
-router.get("/order/:orderId", async (req, res, next) => {
-  try {
-    const orderId = req.params.orderId;
-    const cart = await Cart_Item.findAll({
-      where: {
-        orderId: orderId,
-      },
-    });
-    res.status(200).json(cart);
-  } catch (error) {
-    next(error);
-  }
-});
+// router.get("/order/:orderId", async (req, res, next) => {
+//   try {
+//     const orderId = req.params.orderId;
+//     const cart = await Cart_Item.findAll({
+//       where: {
+//         orderId: orderId,
+//       },
+//     });
+//     res.status(200).json(cart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+// router.put("/cart/addToCart", async (req, res, next) => {
+
+// }
 
 //'checkout'--move from cart to order
 router.put("/checkout", async (req, res, next) => {
@@ -62,20 +66,20 @@ router.put("/checkout", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
-  try {
-    const { productId } = req.body;
-    // const { orderId } = req.body;
+// router.put("/", async (req, res, next) => {
+//   try {
+//     const { productId } = req.body;
+//     // const { orderId } = req.body;
 
-    const [Cart, created] = await Cart.upsert({
-      productId: productId,
-      // orderId: orderId,
-    });
-    res.json(Cart);
-  } catch (error) {
-    next(error);
-  }
-});
+//     const [Cart, created] = await Cart.upsert({
+//       productId: productId,
+//       // orderId: orderId,
+//     });
+//     res.json(Cart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 //delete item from cart
 router.delete("/:productId", async (req, res, next) => {
