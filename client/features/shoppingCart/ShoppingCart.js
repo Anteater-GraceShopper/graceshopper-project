@@ -5,21 +5,36 @@ import {
   deleteCartProductAsync,
   selectCart,
   createOrderAsync,
+  fetchAllOrdersAsync,
 } from "./shoppingCartSlice";
+import {
+  deleteProductAsync,
+  fetchProductsAsync,
+  selectProducts,
+} from "../products/productsSlice";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import { CardContent } from "@mui/material";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-
-const ShoppingCart = ({ shoppingCart }) => {
+import { useParams } from "react-router-dom";
+const ShoppingCart = ({ carts }) => {
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
+  const products = useSelector((state) => state.products);
+  const cartId = useParams();
   console.log(cart);
+  useEffect(
+    (cartId) => {
+      dispatch(fetchAllOrdersAsync(cartId));
+    },
+    [dispatch]
+  );
   useEffect(() => {
-    dispatch(fetchOrderAsync());
+    dispatch(fetchProductsAsync());
   }, [dispatch]);
+  console.log("hey", products.description);
   return (
     <div className="all-items">
       <h1>Shopping Cart</h1>
@@ -29,8 +44,7 @@ const ShoppingCart = ({ shoppingCart }) => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         sx={{
           justifyContent: "center",
-        }}
-      >
+        }}>
         {cart.length < 1 && (
           <div>
             <h2>Cart is empty!</h2>
@@ -38,67 +52,62 @@ const ShoppingCart = ({ shoppingCart }) => {
         )}
         {cart.map((product) => {
           return (
-            <div key={product.id}>
-              <Card
-                raised
-                sx={{
-                  width: 280,
-                  ml: 10,
-                  mb: 3,
-                  padding: "0.1em",
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  image={product.imageUrl}
-                  height="300"
-                  width="300"
-                />
-                <CardContent>
-                  <Link to={`/products/${product.productId}`}>
+            <>
+              <div key={product.productId}>
+                <Card
+                  raised
+                  sx={{
+                    width: 280,
+                    ml: 10,
+                    mb: 3,
+                    padding: "0.1em",
+                  }}>
+                  <CardMedia
+                    component="img"
+                    image={product.imageUrl}
+                    height="300"
+                    width="300"
+                  />
+                  <CardContent>
+                    <Link to={`/products/${product.productId}`}>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        align="center">
+                        {product.productId}
+                      </Typography>
+                    </Link>
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      align="center"
-                    >
-                      {product.name}
+                      align="center">
+                      {product.price}
                     </Typography>
-                  </Link>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    align="center"
-                  >
-                    {product.price}
-                  </Typography>
-                  <button
-                    type="delete"
-                    onClick={async (evt) => {
-                      evt.preventDefault();
-                      await dispatch(
-                        deleteCartProductAsync(
-                          product.id,
-                          product.name,
-                          product.price
-                        )
-                      );
-                      await dispatch(fetchOrderAsync());
-                    }}
-                  >
-                    Delete Item
-                  </button>
-                </CardContent>
-              </Card>
-            </div>
+                    <button
+                      type="delete"
+                      onClick={async (evt) => {
+                        evt.preventDefault();
+                        await dispatch(
+                          deleteCartProductAsync(
+                            product.id,
+                            product.name,
+                            product.price
+                          )
+                        );
+                        await dispatch(fetchAllOrdersAsync());
+                      }}>
+                      Delete Item
+                    </button>
+                  </CardContent>
+                </Card>
+              </div>
+            </>
           );
         })}
       </Grid>
 
-      <Link to='/checkout'>
-      <button
-        class="button"
-      >Checkout
-      </button>
+      <Link to="/checkout">
+        <button class="button">Checkout</button>
       </Link>
       <Link to="/products">Cancel</Link>
     </div>

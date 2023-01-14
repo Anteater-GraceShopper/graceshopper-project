@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { Cart } = require("../db");
+
+const { Cart, Product } = require("../db");
 module.exports = router;
 
 //view the entire cart
@@ -82,11 +83,12 @@ router.put("/checkout", async (req, res, next) => {
 // });
 
 //delete item from cart
-router.delete("/:productId", async (req, res, next) => {
+router.delete("/:cartId", async (req, res, next) => {
   try {
-    const deletedProduct = await Cart.findByPk(req.params.productId);
-    await deletedProduct.destroy();
-    res.send(req.params.productId);
+    const deletedProduct = await await Cart.destroy({
+      where: { id: req.params.cartId },
+    });
+    res.json(deletedProduct);
   } catch (err) {
     next(err);
   }

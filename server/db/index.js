@@ -1,4 +1,5 @@
 //this is the access point for all things database related!
+const Sequelize = require("sequelize");
 
 const db = require("./db");
 
@@ -7,6 +8,7 @@ const Product = require("./models/Product");
 const Cart = require("./models/Cart");
 const Order = require("./models/Order");
 //associations could go here!
+
 User.hasMany(Order);
 Order.belongsTo(User);
 
