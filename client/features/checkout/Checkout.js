@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCartAsync,
-  selectCart,
+  fetchOrderAsync,
+  selectOrder,
   deleteCartProductAsync
  } from "../shoppingCart/shoppingCartSlice";
  import { selectSingleUser } from "../adminView/singleUserSlice";
@@ -16,13 +16,13 @@ import Grid from "@mui/material/Grid";
 const Checkout = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectSingleUser);
-  const cart = useSelector(selectCart)
+  const cart = useSelector(selectOrder)
 
 console.log(user, "HELLO")
 console.log(cart)
 
   useEffect(() => {
-    dispatch(fetchCartAsync());
+    dispatch(fetchOrderAsync());
   }, [dispatch]);
   console.log(user)
   console.log(cart)
@@ -94,7 +94,7 @@ console.log(cart)
                           product.price
                         )
                       );
-                      await dispatch(fetchCartAsync());
+                      await dispatch(fetchOrderAsync());
                     }}
                   >
                     Delete Item

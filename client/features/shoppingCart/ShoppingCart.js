@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchOrderAsync,
   deleteCartProductAsync,
-  selectCart,
+  selectOrder,
   createOrderAsync,
 } from "./shoppingCartSlice";
 import { Link } from "react-router-dom";
