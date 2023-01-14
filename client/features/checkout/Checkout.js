@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCartAsync,
+  fetchOrderAsync,
+  fetchAllOrdersAsync,
   selectCart,
-  deleteCartProductAsync
- } from "../shoppingCart/shoppingCartSlice";
- import { selectSingleUser } from "../adminView/singleUserSlice";
+  deleteCartProductAsync,
+} from "../shoppingCart/shoppingCartSlice";
+import { selectSingleUser } from "../adminView/singleUserSlice";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import { CardContent } from "@mui/material";
@@ -16,24 +17,24 @@ import Grid from "@mui/material/Grid";
 const Checkout = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectSingleUser);
-  const cart = useSelector(selectCart)
-
-console.log(user, "HELLO")
-console.log(cart)
+  const cart = useSelector(selectCart);
+  const cartId = cart.id;
+  console.log(user, "HELLO");
+  console.log(cart);
 
   useEffect(() => {
-    dispatch(fetchCartAsync());
-  }, [dispatch]);
-  console.log(user)
-  console.log(cart)
+    dispatch(fetchAllOrdersAsync(cartId));
+  }, [dispatch, cartId]);
+  console.log(user);
+  console.log(cart);
 
   const cartTotal = () => {
     let total = 0;
-    return total
-  }
+    return total;
+  };
 
   return (
-<div className="all-items">
+    <div className="all-items">
       <h1>Review Items for Checkout</h1>
       <Grid
         container
@@ -41,8 +42,7 @@ console.log(cart)
         columns={{ xs: 4, sm: 8, md: 12 }}
         sx={{
           justifyContent: "center",
-        }}
-      >
+        }}>
         {cart.length < 1 && (
           <div>
             <h2>Cart is empty!</h2>
@@ -58,8 +58,7 @@ console.log(cart)
                   ml: 10,
                   mb: 3,
                   padding: "0.1em",
-                }}
-              >
+                }}>
                 <CardMedia
                   component="img"
                   image={product.imageUrl}
@@ -71,16 +70,14 @@ console.log(cart)
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      align="center"
-                    >
+                      align="center">
                       {product.name}
                     </Typography>
                   </Link>
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    align="center"
-                  >
+                    align="center">
                     {product.price}
                   </Typography>
                   <button
@@ -95,8 +92,7 @@ console.log(cart)
                         )
                       );
                       await dispatch(fetchCartAsync());
-                    }}
-                  >
+                    }}>
                     Delete Item
                   </button>
                 </CardContent>
@@ -105,11 +101,8 @@ console.log(cart)
           );
         })}
       </Grid>
-      <Link to='/orderconfirmation'>
-      <button
-        class="button"
-      >Purchase
-      </button>
+      <Link to="/orderconfirmation">
+        <button class="button">Purchase</button>
       </Link>
       <Link to="/cart">Cancel</Link>
     </div>
