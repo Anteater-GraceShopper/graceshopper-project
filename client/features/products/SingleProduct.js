@@ -50,7 +50,7 @@ const SingleProduct = () => {
         }}>
         <Card
           raised
-          sx={{ width: 600, height: "90vh", ml: 5, mt: 8, mb: 8, mr: 5 }}>
+          sx={{ width: 600, height: 850, ml: 10, mt: 8 }}>
           <div key={productId}>
             <Grid align="center">
               <CardMedia
