@@ -83,10 +83,10 @@ router.put("/checkout", async (req, res, next) => {
 // });
 
 //delete item from cart
-router.delete("/:cartId", async (req, res, next) => {
+router.delete("/:productId", async (req, res, next) => {
   try {
-    const deletedProduct = await await Cart.destroy({
-      where: { id: req.params.cartId },
+    const deletedProduct = await Cart.destroy({
+      where: { productId: req.params.productId },
     });
     res.json(deletedProduct);
   } catch (err) {

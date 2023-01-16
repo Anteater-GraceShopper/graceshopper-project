@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {
-  fetchOrderAsync,
+  fetchAllOrdersAsync,
   deleteCartProductAsync,
   addToCartAsync,
   selectCart,
@@ -13,6 +14,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardContent } from "@mui/material";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
+import { fetchProductsAsync } from "../products/productsSlice";
 
 const ShoppingCart = ({ shoppingCart }) => {
   const dispatch = useDispatch();
@@ -29,8 +31,6 @@ const ShoppingCart = ({ shoppingCart }) => {
     [dispatch]
   );
   useEffect(() => {}, [dispatch]);
-
-
 
   return (
     <div className="all-items">
@@ -54,7 +54,6 @@ const ShoppingCart = ({ shoppingCart }) => {
             console.log(product.product);
           }
           return (
-
             <>
               <div key={product.productId}>
                 <Card
@@ -64,7 +63,8 @@ const ShoppingCart = ({ shoppingCart }) => {
                     ml: 10,
                     mb: 3,
                     padding: "0.1em",
-                  }}>
+                  }}
+                >
                   <CardMedia
                     component="img"
                     image={product.product.imageUrl}
@@ -76,14 +76,16 @@ const ShoppingCart = ({ shoppingCart }) => {
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        align="center">
+                        align="center"
+                      >
                         {product.product.name}
                       </Typography>
                     </Link>
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      align="center">
+                      align="center"
+                    >
                       {product.product.price}
                     </Typography>
                     <button
@@ -97,23 +99,20 @@ const ShoppingCart = ({ shoppingCart }) => {
                           )
                         );
                         await dispatch(fetchAllOrdersAsync());
-                      }}>
+                      }}
+                    >
                       Delete Item
                     </button>
                   </CardContent>
                 </Card>
               </div>
             </>
-
           );
         })}
       </Grid>
 
-      <Link to='/checkout'>
-      <button
-        class="button"
-      >Checkout
-      </button>
+      <Link to="/checkout">
+        <button className="button">Checkout</button>
       </Link>
       <Link to="/products">Cancel</Link>
     </div>
