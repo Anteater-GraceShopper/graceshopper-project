@@ -36,6 +36,9 @@ const SingleProduct = () => {
   useEffect(() => {
     dispatch(fetchSingleProduct(productId));
   }, [dispatch]);
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   return (
     <div className="single-item">
@@ -85,6 +88,7 @@ const SingleProduct = () => {
               onClick={async (evt) => {
                 evt.preventDefault();
                 await dispatch(addToCartAsync({ userId, productId }));
+                dispatch(refreshPage());
               }}>
               Add to Cart
             </Button>
