@@ -4,9 +4,7 @@ import { useParams } from "react-router-dom";
 import {
   fetchAllOrdersAsync,
   deleteCartProductAsync,
-  addToCartAsync,
   selectCart,
-  createOrderAsync,
 } from "./shoppingCartSlice";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
