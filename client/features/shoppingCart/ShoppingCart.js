@@ -8,7 +8,8 @@ import {
   selectCart,
   createOrderAsync,
 } from "./shoppingCartSlice";
-import { Link } from "react-router-dom";
+import { fetchProductsAsync } from "../products/productsSlice";
+import { Link, useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import { CardContent } from "@mui/material";
@@ -41,8 +42,7 @@ const ShoppingCart = ({ shoppingCart }) => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         sx={{
           justifyContent: "center",
-        }}
-      >
+        }}>
         {cart.length < 1 && (
           <div>
             <h2>Cart is empty!</h2>
@@ -112,7 +112,9 @@ const ShoppingCart = ({ shoppingCart }) => {
       </Grid>
 
       <Link to="/checkout">
+
         <button className="button">Checkout</button>
+
       </Link>
       <Link to="/products">Cancel</Link>
     </div>
