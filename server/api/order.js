@@ -15,11 +15,10 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:orderId", async (req, res, next) => {
   try {
-    const orderId = req.params.orderId;
-    const cart = await Cart.findAll({
-      where: {
-        orderId: orderId,
-      },
+    const cart = await Order.findByPk.orderId({
+      include: {
+        Cart
+      }
     });
     const productCart = await cart.getProducts();
     res.status(200).json(productCart);
