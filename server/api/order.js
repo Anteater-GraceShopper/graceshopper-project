@@ -16,9 +16,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:orderId", async (req, res, next) => {
   try {
     const cart = await Order.findByPk.orderId({
-      include: {
-        Cart
-      }
+      include: Cart
     });
     const productCart = await cart.getProducts();
     res.status(200).json(productCart);

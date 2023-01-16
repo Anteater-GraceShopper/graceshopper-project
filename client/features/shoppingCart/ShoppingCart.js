@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useParams } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchOrderAsync,
+  fetchAllOrdersAsync,
   deleteCartProductAsync,
-  addToCartAsync,
+  fetchProductsAsync,
   selectCart,
-  createOrderAsync,
 } from "./shoppingCartSlice";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
