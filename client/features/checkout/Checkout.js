@@ -19,14 +19,10 @@ const Checkout = () => {
   const user = useSelector(selectSingleUser);
   const cart = useSelector(selectCart);
   const cartId = cart.id;
-  console.log(user, "HELLO");
-  console.log(cart);
 
   useEffect(() => {
     dispatch(fetchAllOrdersAsync(cartId));
   }, [dispatch, cartId]);
-  console.log(user);
-  console.log(cart);
 
   const cartTotal = () => {
     let total = 0;

@@ -17,10 +17,21 @@ import Grid from "@mui/material/Grid";
 const ShoppingCart = ({ shoppingCart }) => {
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
-  console.log(cart.id);
-  useEffect(() => {
-    dispatch(fetchOrderAsync());
-  }, [dispatch]);
+
+  const products = useSelector((state) => state.products);
+  const cartId = useParams();
+
+  useEffect(
+    (cartId) => {
+      dispatch(fetchAllOrdersAsync(cartId));
+      dispatch(fetchProductsAsync());
+    },
+    [dispatch]
+  );
+  useEffect(() => {}, [dispatch]);
+
+
+
   return (
     <div className="all-items">
       <h1>Shopping Cart</h1>
@@ -37,76 +48,63 @@ const ShoppingCart = ({ shoppingCart }) => {
             <h2>Cart is empty!</h2>
           </div>
         )}
+
         {cart.map((product) => {
+          {
+            console.log(product.product);
+          }
           return (
-            <div key={product.id}>
-              <Card
-                raised
-                sx={{
-                  width: 280,
-                  ml: 10,
-                  mb: 3,
-                  padding: "0.1em",
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  image={product.imageUrl}
-                  height="300"
-                  width="300"
-                />
-                <CardContent>
-                  <Link to={`/products/${product.productId}`}>
+
+            <>
+              <div key={product.productId}>
+                <Card
+                  raised
+                  sx={{
+                    width: 280,
+                    ml: 10,
+                    mb: 3,
+                    padding: "0.1em",
+                  }}>
+                  <CardMedia
+                    component="img"
+                    image={product.product.imageUrl}
+                    height="300"
+                    width="300"
+                  />
+                  <CardContent>
+                    <Link to={`/products/${product.productId}`}>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        align="center">
+                        {product.product.name}
+                      </Typography>
+                    </Link>
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      align="center"
-                    >
-                      {product.name}
+                      align="center">
+                      {product.product.price}
                     </Typography>
-                  </Link>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    align="center"
-                  >
-                    {product.price}
-                  </Typography>
-                  <button
-                    type="add"
-                    onClick={async (evt) => {
-                      evt.preventDefault();
-                      await dispatch(
-                        addToCartAsync(
-                          product.id,
-                          product.name,
-                          product.price
-                        )
-                      );
-                      await dispatch(fetchOrderAsync());
-                    }}
-                  >
-                    Delete Item
-                  </button>
-                  <button
-                    type="delete"
-                    onClick={async (evt) => {
-                      evt.preventDefault();
-                      await dispatch(
-                        deleteCartProductAsync(
-                          product.id,
-                          product.name,
-                          product.price
-                        )
-                      );
-                      await dispatch(fetchOrderAsync());
-                    }}
-                  >
-                    Delete Item
-                  </button>
-                </CardContent>
-              </Card>
-            </div>
+                    <button
+                      type="delete"
+                      onClick={async (evt) => {
+                        evt.preventDefault();
+                        await dispatch(
+                          deleteCartProductAsync(
+                            product.product.id,
+                            product.product.name
+                          )
+                        );
+                        await dispatch(fetchAllOrdersAsync());
+                      }}>
+                      Delete Item
+                    </button>
+                  </CardContent>
+                </Card>
+              </div>
+            </>
+
           );
         })}
       </Grid>
