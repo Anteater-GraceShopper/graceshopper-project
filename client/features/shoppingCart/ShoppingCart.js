@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+
 import {
   fetchAllOrdersAsync,
   deleteCartProductAsync,
   selectCart,
 } from "./shoppingCartSlice";
-import { fetchProductsAsync } from "../products/productsSlice";
+
 import { Link, useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
@@ -61,8 +61,7 @@ const ShoppingCart = ({ shoppingCart }) => {
                     ml: 10,
                     mb: 3,
                     padding: "0.1em",
-                  }}
-                >
+                  }}>
                   <CardMedia
                     component="img"
                     image={product.product.imageUrl}
@@ -74,16 +73,14 @@ const ShoppingCart = ({ shoppingCart }) => {
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        align="center"
-                      >
+                        align="center">
                         {product.product.name}
                       </Typography>
                     </Link>
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      align="center"
-                    >
+                      align="center">
                       {product.product.price}
                     </Typography>
                     <button
@@ -97,8 +94,7 @@ const ShoppingCart = ({ shoppingCart }) => {
                           )
                         );
                         await dispatch(fetchAllOrdersAsync());
-                      }}
-                    >
+                      }}>
                       Delete Item
                     </button>
                   </CardContent>
@@ -110,9 +106,7 @@ const ShoppingCart = ({ shoppingCart }) => {
       </Grid>
 
       <Link to="/checkout">
-
         <button className="button">Checkout</button>
-
       </Link>
       <Link to="/products">Cancel</Link>
     </div>
