@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchOrderAsync,
+  fetchCartAsync,
   fetchAllOrdersAsync,
   selectCart,
   deleteCartProductAsync,
@@ -38,7 +38,8 @@ const Checkout = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         sx={{
           justifyContent: "center",
-        }}>
+        }}
+      >
         {cart.length < 1 && (
           <div>
             <h2>Cart is empty!</h2>
@@ -46,7 +47,7 @@ const Checkout = () => {
         )}
         {cart.map((product) => {
           return (
-            <div key={product.id}>
+            <div key={product.productId}>
               <Card
                 raised
                 sx={{
@@ -54,10 +55,11 @@ const Checkout = () => {
                   ml: 10,
                   mb: 3,
                   padding: "0.1em",
-                }}>
+                }}
+              >
                 <CardMedia
                   component="img"
-                  image={product.imageUrl}
+                  image={product.product.imageUrl}
                   height="300"
                   width="300"
                 />
@@ -66,15 +68,17 @@ const Checkout = () => {
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      align="center">
-                      {product.name}
+                      align="center"
+                    >
+                      {product.product.name}
                     </Typography>
                   </Link>
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    align="center">
-                    {product.price}
+                    align="center"
+                  >
+                    {product.product.price}
                   </Typography>
                   <button
                     type="delete"
@@ -82,13 +86,13 @@ const Checkout = () => {
                       evt.preventDefault();
                       await dispatch(
                         deleteCartProductAsync(
-                          product.id,
-                          product.name,
-                          product.price
+                          product.product.id,
+                          product.product.name
                         )
                       );
                       await dispatch(fetchCartAsync());
-                    }}>
+                    }}
+                  >
                     Delete Item
                   </button>
                 </CardContent>
@@ -98,7 +102,7 @@ const Checkout = () => {
         })}
       </Grid>
       <Link to="/orderconfirmation">
-        <button class="button">Purchase</button>
+        <button className="button">Purchase</button>
       </Link>
       <Link to="/cart">Cancel</Link>
     </div>

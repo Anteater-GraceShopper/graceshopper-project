@@ -4,9 +4,7 @@ import { useParams } from "react-router-dom";
 import {
   fetchAllOrdersAsync,
   deleteCartProductAsync,
-  addToCartAsync,
   selectCart,
-  createOrderAsync,
 } from "./shoppingCartSlice";
 import { fetchProductsAsync } from "../products/productsSlice";
 import { Link, useParams } from "react-router-dom";
