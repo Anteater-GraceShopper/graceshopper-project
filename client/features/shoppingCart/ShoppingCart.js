@@ -24,17 +24,16 @@ const ShoppingCart = ({ carts }) => {
   const cart = useSelector(selectCart);
   const products = useSelector((state) => state.products);
   const cartId = useParams();
-  console.log(cart);
+
   useEffect(
     (cartId) => {
       dispatch(fetchAllOrdersAsync(cartId));
+      dispatch(fetchProductsAsync());
     },
     [dispatch]
   );
-  useEffect(() => {
-    dispatch(fetchProductsAsync());
-  }, [dispatch]);
-  console.log("hey", products.description);
+  useEffect(() => {}, [dispatch]);
+
   return (
     <div className="all-items">
       <h1>Shopping Cart</h1>
@@ -50,7 +49,11 @@ const ShoppingCart = ({ carts }) => {
             <h2>Cart is empty!</h2>
           </div>
         )}
+
         {cart.map((product) => {
+          {
+            console.log(product.product);
+          }
           return (
             <>
               <div key={product.productId}>
@@ -64,7 +67,7 @@ const ShoppingCart = ({ carts }) => {
                   }}>
                   <CardMedia
                     component="img"
-                    image={product.imageUrl}
+                    image={product.product.imageUrl}
                     height="300"
                     width="300"
                   />
@@ -74,14 +77,14 @@ const ShoppingCart = ({ carts }) => {
                         variant="body2"
                         color="text.secondary"
                         align="center">
-                        {product.productId}
+                        {product.product.name}
                       </Typography>
                     </Link>
                     <Typography
                       variant="body2"
                       color="text.secondary"
                       align="center">
-                      {product.price}
+                      {product.product.price}
                     </Typography>
                     <button
                       type="delete"
@@ -89,9 +92,8 @@ const ShoppingCart = ({ carts }) => {
                         evt.preventDefault();
                         await dispatch(
                           deleteCartProductAsync(
-                            product.id,
-                            product.name,
-                            product.price
+                            product.product.id,
+                            product.product.name
                           )
                         );
                         await dispatch(fetchAllOrdersAsync());

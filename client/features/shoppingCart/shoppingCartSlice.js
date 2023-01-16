@@ -26,7 +26,6 @@ export const fetchOrderAsync = createAsyncThunk(
   "cart/fetchOrder",
   async ({ orderId }) => {
     try {
-      console.log("ORDER", orderId);
       const { data } = await axios.get(`/api/order/${orderId}`);
       return data;
     } catch (error) {
@@ -39,8 +38,6 @@ export const addToCartAsync = createAsyncThunk(
   "order/addToCart",
   async ({ userId, productId }) => {
     try {
-      console.log("PRODUCT", productId);
-      console.log("USER", userId);
       const { data } = await axios.put(`/api/order/${userId}/${productId}`);
       return data;
     } catch (error) {
@@ -51,10 +48,9 @@ export const addToCartAsync = createAsyncThunk(
 
 export const deleteCartProductAsync = createAsyncThunk(
   "cart/deleteProduct",
-  async (id, name) => {
+  async (id, product) => {
     const { data } = await axios.delete(`/api/cart/${id}`, {
-      id,
-      name,
+      product,
     });
     return data;
   }

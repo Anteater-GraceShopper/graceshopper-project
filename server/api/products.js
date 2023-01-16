@@ -3,7 +3,6 @@ const { Product } = require("../db");
 
 router.get("/", async (req, res, next) => {
   try {
-    console.log("products", Object.keys(Product.prototype));
     const allProducts = await Product.findAll();
     res.json(allProducts);
   } catch (err) {

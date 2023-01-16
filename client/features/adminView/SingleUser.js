@@ -20,7 +20,6 @@ const SingleUser = () => {
     dispatch(fetchSingleUser(userId));
   }, [dispatch]);
 
-  console.log(user.isAdmin);
   return (
     <div>
       <p>

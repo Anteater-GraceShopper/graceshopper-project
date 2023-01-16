@@ -8,7 +8,7 @@ import { fetchUsersAsync } from "./usersSlice";
 const AllUsers = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-  console.log(users);
+
   useEffect(() => {
     dispatch(fetchUsersAsync());
   }, [dispatch]);
