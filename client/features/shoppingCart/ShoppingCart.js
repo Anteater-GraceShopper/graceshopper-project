@@ -3,25 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchOrderAsync,
   deleteCartProductAsync,
+  addToCartAsync,
   selectCart,
   createOrderAsync,
-  fetchAllOrdersAsync,
 } from "./shoppingCartSlice";
-import {
-  deleteProductAsync,
-  fetchProductsAsync,
-  selectProducts,
-} from "../products/productsSlice";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import { CardContent } from "@mui/material";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import { useParams } from "react-router-dom";
-const ShoppingCart = ({ carts }) => {
+
+const ShoppingCart = ({ shoppingCart }) => {
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
+
   const products = useSelector((state) => state.products);
   const cartId = useParams();
 
@@ -34,6 +30,8 @@ const ShoppingCart = ({ carts }) => {
   );
   useEffect(() => {}, [dispatch]);
 
+
+
   return (
     <div className="all-items">
       <h1>Shopping Cart</h1>
@@ -43,7 +41,8 @@ const ShoppingCart = ({ carts }) => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         sx={{
           justifyContent: "center",
-        }}>
+        }}
+      >
         {cart.length < 1 && (
           <div>
             <h2>Cart is empty!</h2>
@@ -55,6 +54,7 @@ const ShoppingCart = ({ carts }) => {
             console.log(product.product);
           }
           return (
+
             <>
               <div key={product.productId}>
                 <Card
@@ -104,12 +104,16 @@ const ShoppingCart = ({ carts }) => {
                 </Card>
               </div>
             </>
+
           );
         })}
       </Grid>
 
-      <Link to="/checkout">
-        <button class="button">Checkout</button>
+      <Link to='/checkout'>
+      <button
+        class="button"
+      >Checkout
+      </button>
       </Link>
       <Link to="/products">Cancel</Link>
     </div>
