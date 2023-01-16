@@ -6,7 +6,7 @@ module.exports = router;
 //view the entire cart
 router.get("/", async (req, res, next) => {
   try {
-    const cart = await Cart.findAll();
+    const cart = await Cart.findAll({ include: Product });
     res.json(cart);
   } catch (err) {
     next(err);

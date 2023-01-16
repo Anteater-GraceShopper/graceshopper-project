@@ -73,7 +73,7 @@ User.findByToken = async function (token) {
         isComplete: false,
       },
     });
-    console.log(user);
+
     if (!user.orders.length) {
       let order = await Order.create();
       await user.addOrder(order);

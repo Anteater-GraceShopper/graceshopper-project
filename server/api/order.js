@@ -6,6 +6,7 @@ module.exports = router;
 router.get("/", async (req, res, next) => {
   try {
     const orders = await Order.findAll();
+
     res.json(orders);
   } catch (err) {
     next(err);
@@ -20,7 +21,8 @@ router.get("/:orderId", async (req, res, next) => {
         orderId: orderId,
       },
     });
-    res.status(200).json(cart);
+    const productCart = await cart.getProducts();
+    res.status(200).json(productCart);
   } catch (error) {
     next(error);
   }
