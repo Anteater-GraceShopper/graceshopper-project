@@ -15,13 +15,6 @@ import { Link } from "react-router-dom";
 import { me } from "../auth/authSlice";
 import { deleteCartProductAsync } from "./shoppingCartSlice";
 import { fetchOrderAsync, selectCart } from "./singleCartSlice";
-import { useState } from "react";
-import {
-  selectCart
-  fetchSingleUser,
-  selectSingleUser,
-} from "../adminView/singleUserSlice";
-import { me, authenticate } from "../auth/authSlice";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();

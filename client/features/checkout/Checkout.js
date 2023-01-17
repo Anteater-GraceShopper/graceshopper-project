@@ -1,28 +1,20 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import {
-  selectCart
-  deleteCartProductAsync,
-} from "./shoppingCartSlice";
-import { fetchOrderAsync, selectCart } from "./singleCartSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
-  CardContent,
-  CardActions,
-  CardMedia,
-  Typography,
+  Button,
   Card,
+  CardActions,
+  CardContent,
+  CardMedia,
   Grid,
   Tooltip,
-  Button,
+  Typography,
 } from "@mui/material";
-import { useState } from "react";
-import {
-  fetchSingleUser,
-  selectSingleUser,
-} from "../adminView/singleUserSlice";
-import { me, authenticate } from "../auth/authSlice";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { me } from "../auth/authSlice";
+import { deleteCartProductAsync } from "./shoppingCartSlice";
+import { fetchOrderAsync, selectCart } from "./singleCartSlice";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -52,11 +44,7 @@ const Checkout = () => {
             <h2>Cart is empty!</h2>
           </div>
         )}
-        {cart.length ? (
-          cart.map((product) => {
-            {
-              console.log(product.product);
-            }
+        {cart.map((product) => {
           return (
             <div key={product.productId}>
               <Card
@@ -70,7 +58,7 @@ const Checkout = () => {
               >
                 <CardMedia
                   component="img"
-                  image={product.imageUrl}
+                  image={product.product.imageUrl}
                   height="300"
                   width="300"
                 />
@@ -81,7 +69,7 @@ const Checkout = () => {
                       color="text.secondary"
                       align="center"
                     >
-                      {product.name}
+                      {product.product.name}
                     </Typography>
                   </Link>
                   <Typography
@@ -89,15 +77,8 @@ const Checkout = () => {
                     color="text.secondary"
                     align="center"
                   >
-                    {product.price}
+                    {product.product.price}
                   </Typography>
-                  <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      align="center"
-                    >
-                      {product.itemCount}
-                      </Typography>
                   <CardActions
                     sx={{
                       display: "flex",
@@ -114,11 +95,11 @@ const Checkout = () => {
                           evt.preventDefault();
                           await dispatch(
                             deleteCartProductAsync(
-                              product.id,
-                              product.name
+                              product.product.id,
+                              product.product.name
                             )
                           );
-                          await dispatch(fetchOrderAsync(id));
+                          await dispatch(fetchCartAsync());
                         }}
                       />
                     </Tooltip>
@@ -127,14 +108,8 @@ const Checkout = () => {
               </Card>
             </div>
           );
-        })
-        ) : (
-          <div>
-            <h2>Cart is empty!</h2>
-          </div>
-        )}
+        })}
       </Grid>
-
       <Link to="/orderconfirmation">
         <div className="continue-shopping">
           <Button
