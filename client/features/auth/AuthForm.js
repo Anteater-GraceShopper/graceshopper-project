@@ -42,7 +42,8 @@ const AuthForm = ({ name, displayName }) => {
           direction="column"
           sx={{
             mt: 2,
-          }}>
+          }}
+        >
           <form onSubmit={handleSignUp} name={name}>
             <div>
               <TextField
@@ -111,7 +112,8 @@ const AuthForm = ({ name, displayName }) => {
                   "&:hover": {
                     bgcolor: "#598588",
                   },
-                }}>
+                }}
+              >
                 {displayName}
               </Button>
             </div>
@@ -125,7 +127,8 @@ const AuthForm = ({ name, displayName }) => {
           direction="column"
           sx={{
             mt: 2,
-          }}>
+          }}
+        >
           <form onSubmit={handleSubmit} name={name}>
             <div>
               <TextField
@@ -166,7 +169,8 @@ const AuthForm = ({ name, displayName }) => {
                   "&:hover": {
                     bgcolor: "#598588",
                   },
-                }}>
+                }}
+              >
                 {displayName}
               </Button>
             </div>
@@ -175,8 +179,6 @@ const AuthForm = ({ name, displayName }) => {
       )}
 
       {error && <div> {error} </div>}
-
-      {console.log(displayName)}
     </div>
   );
 };
