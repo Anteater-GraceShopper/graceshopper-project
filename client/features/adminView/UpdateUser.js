@@ -3,19 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
   fetchSingleUser,
-  selectSingleUser,
   editSingleUser,
 } from "./singleUserSlice";
 
-// import Grid from "@mui/material/Grid";
-// import CardMedia from "@mui/material/CardMedia";
-// import { CardContent } from "@mui/material";
-// import Card from "@mui/material/Card";
-// import Typography from "@mui/material/Typography";
-
 const UpdateUser = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectSingleUser);
 
   const { userId } = useParams();
   const [isAdmin, setAdmin] = useState(false);

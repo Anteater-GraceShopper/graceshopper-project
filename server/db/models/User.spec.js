@@ -1,4 +1,3 @@
-/* global describe beforeEach it */
 
 const {expect} = require('chai')
 const { db, models: { User } } = require('../index')
@@ -18,7 +17,7 @@ describe('User model', () => {
         const { id } = await jwt.verify(token, process.env.JWT);
         expect(id).to.equal(users.cody.id);
       })
-    }) // end describe('correctPassword')
+    })
     describe('authenticate', () => {
       let user;
       beforeEach(async()=> user = await User.create({
@@ -50,6 +49,6 @@ describe('User model', () => {
         })
 
       });
-    }) // end describe('authenticate')
-  }) // end describe('instanceMethods')
-}) // end describe('User model')
+    })
+  })
+})

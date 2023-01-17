@@ -1,9 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Grid, Typography } from "@mui/material";
-/**
- * COMPONENT
- */
+
 const Home = (props) => {
   const firstName = useSelector((state) => state.auth.me.first);
 

@@ -13,19 +13,6 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// router.get("/:orderId", async (req, res, next) => {
-//   try {
-//     const cart = await Order.findByPk(req.params.orderId, {
-//       include: Product,
-//     });
-//     const productCart = await cart.getProducts();
-//     console.log("PRODUCT CART", productCart);
-//     res.status(200).json(productCart);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 router.get("/:userId", async (req, res, next) => {
   try {
     console.log("THIS IS THE USERID", req.params.userId);
@@ -42,32 +29,6 @@ router.get("/:userId", async (req, res, next) => {
     next(error);
   }
 });
-
-// router.put("/:productId/:userId", async (req, res, next) => {
-//   const product = await Product.findByPk(req.params.productId);
-//   const user = await User.findByPk(req.params.userId, {
-//     include: Order,
-//     where: {
-//       isComplete: false,
-//     },
-//   });
-//   const order = user.orders[0];
-//   const newProduct = await order;
-// });
-
-// router.put("/:productId/:orderId", async (req, res, next) => {
-//   const order = await Order.findByPk(req.params.orderId);
-//   const productId = await Product.findByPk(req.params.productId);
-//   console.log("THIS IS THE PRODUCT ID", productId);
-//   if (order) {
-//     try {
-//       const orderUpdate = Order.update({ productId });
-//       res.status(201).json(orderUpdate);
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-// });
 
 router.put("/:userId/:productId", async (req, res, next) => {
   try {

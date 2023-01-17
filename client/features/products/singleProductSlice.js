@@ -42,7 +42,7 @@ export const addSingleProduct = createAsyncThunk(
     }
   }
 );
-//comment
+
 const singleProductSlice = createSlice({
   name: "product",
   initialState: {},

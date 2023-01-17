@@ -14,8 +14,8 @@ import {
   fetchProductsAsync,
   selectProducts,
 } from "./productsSlice";
-
 import Grid from "@mui/material/Grid";
+
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);

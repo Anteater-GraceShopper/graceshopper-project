@@ -25,22 +25,13 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
   const { id } = useSelector((state) => state.auth.me);
-  console.log("THIS IS THE ID", id);
-  console.log("THIS IS THE CART", cart);
-  // console.log("THIS IS THE USER", user);
-  // const orderId = user.orders[0].id;
 
-  // const product = useSelector(selectProducts);
-  // console.log(product);
-  // const orderId = cart[0].cart.orderId;
   useEffect(() => {
     dispatch(me());
   }, [dispatch]);
   useEffect(() => {
     dispatch(fetchOrderAsync(id));
   }, [dispatch, id]);
-  // const [cart, setCart] = useState(cart.orderId);
-  // console.log(cart);
 
   return (
     <div className="all-items">

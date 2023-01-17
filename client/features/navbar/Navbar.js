@@ -27,7 +27,6 @@ const Navbar = () => {
           <nav>
             {isLoggedIn && isAdmin ? (
               <div>
-                {/* The navbar will show these links after you log in */}
 
                 <Typography
                   variant="h5"
@@ -76,7 +75,6 @@ const Navbar = () => {
               </div>
             ) : isLoggedIn ? (
               <div>
-                {/* The navbar will show these links before you log in */}
                 <Typography
                   variant="h5"
                   component={Link}
@@ -111,7 +109,6 @@ const Navbar = () => {
               </div>
             ) : (
               <div>
-                {/* The navbar will show these links before you log in */}
                 <Typography
                   variant="h5"
                   component={Link}
