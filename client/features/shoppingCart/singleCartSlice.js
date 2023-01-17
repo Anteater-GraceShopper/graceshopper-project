@@ -5,9 +5,7 @@ export const fetchOrderAsync = createAsyncThunk(
   "cart/fetchOrder",
   async (userId) => {
     try {
-      console.log("THIS IS THE USERID", userId);
       const { data } = await axios.get(`/api/order/${userId}`);
-      console.log("THIS IS THE DATA", data);
       return data;
     } catch (error) {
       return error.message;
