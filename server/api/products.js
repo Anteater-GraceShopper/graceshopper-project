@@ -36,19 +36,6 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// router.delete("/:productId", async (req, res, next) => {
-//   try {
-//     await Product.destroy({
-//       where: {
-//         id: req.params.productId,
-//       },
-//     });
-//     res.json(req.params.productId);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 router.delete("/:productId", async (req, res, next) => {
   try {
     const deletedProduct = await Product.findByPk(req.params.productId);

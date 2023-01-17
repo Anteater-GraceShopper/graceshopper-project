@@ -25,6 +25,7 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
   const { id } = useSelector((state) => state.auth.me);
+
   useEffect(() => {
     dispatch(me());
   }, [dispatch]);

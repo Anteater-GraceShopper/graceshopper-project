@@ -4,11 +4,6 @@ import { useParams } from "react-router-dom";
 import { fetchSingleUser, selectSingleUser } from "./singleUserSlice";
 import { Select, MenuItem } from "@mui/material";
 import UpdateUser from "./UpdateUser";
-// import Grid from "@mui/material/Grid";
-// import CardMedia from "@mui/material/CardMedia";
-// import { CardContent } from "@mui/material";
-// import Card from "@mui/material/Card";
-// import Typography from "@mui/material/Typography";
 
 const SingleUser = () => {
   const dispatch = useDispatch();
