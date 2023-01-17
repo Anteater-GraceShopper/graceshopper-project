@@ -13,6 +13,8 @@ import { CardContent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
+import { Button, Tooltip, CardActions } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -80,21 +82,31 @@ const Checkout = () => {
                   >
                     {product.product.price}
                   </Typography>
-                  <button
-                    type="delete"
-                    onClick={async (evt) => {
-                      evt.preventDefault();
-                      await dispatch(
-                        deleteCartProductAsync(
-                          product.product.id,
-                          product.product.name
-                        )
-                      );
-                      await dispatch(fetchCartAsync());
+                  <CardActions
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      "&:hover": {
+                        cursor: "pointer",
+                      },
                     }}
                   >
-                    Delete Item
-                  </button>
+                    <Tooltip title="Remove from cart">
+                      <DeleteIcon
+                        type="delete"
+                        onClick={async (evt) => {
+                          evt.preventDefault();
+                          await dispatch(
+                            deleteCartProductAsync(
+                              product.product.id,
+                              product.product.name
+                            )
+                          );
+                          await dispatch(fetchCartAsync());
+                        }}
+                      />
+                    </Tooltip>
+                  </CardActions>
                 </CardContent>
               </Card>
             </div>
@@ -102,9 +114,37 @@ const Checkout = () => {
         })}
       </Grid>
       <Link to="/orderconfirmation">
-        <button className="button">Purchase</button>
+        <div className="continue-shopping">
+          <Button
+            align="center"
+            variant="contained"
+            sx={{
+              bgcolor: "#28536B",
+              "&:hover": {
+                bgcolor: "#598588",
+              },
+            }}
+          >
+            Purchase
+          </Button>
+        </div>
       </Link>
-      <Link to="/cart">Cancel</Link>
+      <Link to="/cart">
+        <div className="continue-shopping">
+          <Button
+            align="center"
+            variant="contained"
+            sx={{
+              bgcolor: "#28536B",
+              "&:hover": {
+                bgcolor: "#598588",
+              },
+            }}
+          >
+            Cancel
+          </Button>
+        </div>
+      </Link>
     </div>
   );
 };
