@@ -3,9 +3,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchOrderAsync = createAsyncThunk(
   "cart/fetchOrder",
-  async (orderId) => {
+  async (userId) => {
     try {
-      const { data } = await axios.get(`/api/order/${orderId}`);
+      console.log("THIS IS THE USERID", userId);
+      const { data } = await axios.get(`/api/order/${userId}`);
+      console.log("THIS IS THE DATA", data);
       return data;
     } catch (error) {
       return error.message;
@@ -15,7 +17,7 @@ export const fetchOrderAsync = createAsyncThunk(
 
 export const singleCartSlice = createSlice({
   name: "cart",
-  initialState: {},
+  initialState: [],
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchOrderAsync.fulfilled, (state, action) => {

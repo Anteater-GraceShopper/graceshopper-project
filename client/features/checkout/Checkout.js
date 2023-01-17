@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCartAsync,
   fetchAllOrdersAsync,
-  selectCart,
   deleteCartProductAsync,
 } from "../shoppingCart/shoppingCartSlice";
 import { selectSingleUser } from "../adminView/singleUserSlice";
@@ -15,6 +13,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import { Button, Tooltip, CardActions } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { selectCart } from "../shoppingCart/singleCartSlice";
 
 const Checkout = () => {
   const dispatch = useDispatch();

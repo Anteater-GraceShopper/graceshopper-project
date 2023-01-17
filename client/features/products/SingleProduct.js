@@ -1,18 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { me } from "../auth/authSlice";
 import { addToCartAsync } from "../shoppingCart/shoppingCartSlice";
-import { addProductAsync } from "./productsSlice";
-import {
-  addSingleProduct,
-  fetchSingleProduct,
-  selectSingleProduct,
-} from "./singleProductSlice";
+import { fetchSingleProduct, selectSingleProduct } from "./singleProductSlice";
 import EditProduct from "../adminView/EditProduct";
 
 import {
-  CardActions,
   Typography,
   CardMedia,
   Card,
@@ -50,10 +43,9 @@ const SingleProduct = () => {
         sx={{
           justifyContent: "center",
           mt: 30,
-        }}>
-        <Card
-          raised
-          sx={{ width: 600, height: 850, ml: 10, mt: 8 }}>
+        }}
+      >
+        <Card raised sx={{ width: 600, height: 850, ml: 10, mt: 8 }}>
           <div key={productId}>
             <Grid align="center">
               <CardMedia
@@ -88,8 +80,8 @@ const SingleProduct = () => {
               onClick={async (evt) => {
                 evt.preventDefault();
                 await dispatch(addToCartAsync({ userId, productId }));
-                dispatch(refreshPage());
-              }}>
+              }}
+            >
               Add to Cart
             </Button>
           </Grid>
