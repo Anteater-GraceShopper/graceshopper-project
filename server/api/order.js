@@ -13,12 +13,30 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:orderId", async (req, res, next) => {
+// router.get("/:orderId", async (req, res, next) => {
+//   try {
+//     const cart = await Order.findByPk(req.params.orderId, {
+//       include: Product,
+//     });
+//     const productCart = await cart.getProducts();
+//     console.log("PRODUCT CART", productCart);
+//     res.status(200).json(productCart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+router.get("/:userId", async (req, res, next) => {
   try {
-    const cart = await Order.findByPk.orderId({
-      include: Cart
+    console.log("THIS IS THE USERID", req.params.userId);
+    const order = await Order.findOne({
+      where: {
+        isComplete: false,
+        userId: req.params.userId,
+      },
     });
-    const productCart = await cart.getProducts();
+    const productCart = await order.getProducts();
+    console.log("PRODUCT CART", productCart);
     res.status(200).json(productCart);
   } catch (error) {
     next(error);

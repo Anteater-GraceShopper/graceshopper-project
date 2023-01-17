@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Link, useParams } from "react-router-dom";
 import {
   fetchAllOrdersAsync,
   deleteCartProductAsync,
-  selectCart,
+  selectCarts,
 } from "./shoppingCartSlice";
+import { fetchOrderAsync, selectCart } from "./singleCartSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link, useParams } from "react-router-dom";
-
 import {
   CardContent,
   CardActions,
@@ -18,26 +17,34 @@ import {
   Grid,
   Tooltip,
   Button,
-  Box,
 } from "@mui/material";
+import { useState } from "react";
+import {
+  fetchSingleUser,
+  selectSingleUser,
+} from "../adminView/singleUserSlice";
+import { me, authenticate } from "../auth/authSlice";
 
-import { fetchProductsAsync } from "../products/productsSlice";
-
-const ShoppingCart = ({ shoppingCart }) => {
+const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
+  const { id } = useSelector((state) => state.auth.me);
+  console.log("THIS IS THE ID", id);
+  console.log("THIS IS THE CART", cart);
+  // console.log("THIS IS THE USER", user);
+  // const orderId = user.orders[0].id;
 
-  const products = useSelector((state) => state.products);
-  const cartId = useParams();
-
-  useEffect(
-    (cartId) => {
-      dispatch(fetchAllOrdersAsync(cartId));
-      dispatch(fetchProductsAsync());
-    },
-    [dispatch]
-  );
-  useEffect(() => {}, [dispatch]);
+  // const product = useSelector(selectProducts);
+  // console.log(product);
+  // const orderId = cart[0].cart.orderId;
+  useEffect(() => {
+    dispatch(me());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchOrderAsync(id));
+  }, [dispatch, id]);
+  // const [cart, setCart] = useState(cart.orderId);
+  // console.log(cart);
 
   return (
     <div className="all-items">
@@ -48,19 +55,20 @@ const ShoppingCart = ({ shoppingCart }) => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         sx={{
           justifyContent: "center",
-        }}>
+        }}
+      >
         {cart.length < 1 && (
           <div>
             <h2>Cart is empty!</h2>
           </div>
         )}
 
-        {cart.map((product) => {
-          {
-            console.log(product.product);
-          }
-          return (
-            <>
+        {cart.length ? (
+          cart.map((product) => {
+            {
+              console.log(product.product);
+            }
+            return (
               <div key={product.productId}>
                 <Card
                   raised
@@ -69,10 +77,11 @@ const ShoppingCart = ({ shoppingCart }) => {
                     ml: 10,
                     mb: 3,
                     padding: "0.1em",
-                  }}>
+                  }}
+                >
                   <CardMedia
                     component="img"
-                    image={product.product.imageUrl}
+                    image={product.imageUrl}
                     height="300"
                     width="300"
                   />
@@ -81,20 +90,23 @@ const ShoppingCart = ({ shoppingCart }) => {
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        align="center">
-                        {product.product.name}
+                        align="center"
+                      >
+                        {product.name}
                       </Typography>
                     </Link>
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      align="center">
-                      {product.product.price}
+                      align="center"
+                    >
+                      {product.price}
                     </Typography>
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      align="center">
+                      align="center"
+                    >
                       {product.itemCount}
                     </Typography>
                     <CardActions
@@ -104,19 +116,17 @@ const ShoppingCart = ({ shoppingCart }) => {
                         "&:hover": {
                           cursor: "pointer",
                         },
-                      }}>
+                      }}
+                    >
                       <Tooltip title="Remove from cart">
                         <DeleteIcon
                           type="delete"
                           onClick={async (evt) => {
                             evt.preventDefault();
                             await dispatch(
-                              deleteCartProductAsync(
-                                product.product.id,
-                                product.product.name
-                              )
+                              deleteCartProductAsync(product.id, product.name)
                             );
-                            await dispatch(fetchAllOrdersAsync());
+                            await dispatch(fetchOrderAsync(id));
                           }}
                         />
                       </Tooltip>
@@ -124,9 +134,13 @@ const ShoppingCart = ({ shoppingCart }) => {
                   </CardContent>
                 </Card>
               </div>
-            </>
-          );
-        })}
+            );
+          })
+        ) : (
+          <div>
+            <h2>Cart is empty!</h2>
+          </div>
+        )}
       </Grid>
 
       <Link to="/checkout">
@@ -139,7 +153,8 @@ const ShoppingCart = ({ shoppingCart }) => {
               "&:hover": {
                 bgcolor: "#598588",
               },
-            }}>
+            }}
+          >
             Checkout
           </Button>
         </div>
@@ -155,7 +170,8 @@ const ShoppingCart = ({ shoppingCart }) => {
               "&:hover": {
                 bgcolor: "#598588",
               },
-            }}>
+            }}
+          >
             Continue Shopping
           </Button>
         </div>
