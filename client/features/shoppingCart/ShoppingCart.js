@@ -1,21 +1,20 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import {
-  deleteCartProductAsync,
-} from "./shoppingCartSlice";
-import { fetchOrderAsync, selectCart } from "./singleCartSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
-  CardContent,
-  CardActions,
-  CardMedia,
-  Typography,
+  Button,
   Card,
+  CardActions,
+  CardContent,
+  CardMedia,
   Grid,
   Tooltip,
-  Button,
+  Typography,
 } from "@mui/material";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { me } from "../auth/authSlice";
+import { deleteCartProductAsync } from "./shoppingCartSlice";
+import { fetchOrderAsync, selectCart } from "./singleCartSlice";
 import { useState } from "react";
 import {
   selectCart
@@ -106,7 +105,11 @@ const ShoppingCart = () => {
                       color="text.secondary"
                       align="center"
                     >
+                      <button>-</button>
+                      <span> </span>
                       {product.itemCount}
+                      <span> </span>
+                      <button>+</button>
                     </Typography>
                     <CardActions
                       sx={{
