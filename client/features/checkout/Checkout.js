@@ -1,34 +1,40 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import {
-  fetchAllOrdersAsync,
+  selectCart
   deleteCartProductAsync,
-} from "../shoppingCart/shoppingCartSlice";
-import { selectSingleUser } from "../adminView/singleUserSlice";
-import { Link } from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import { CardContent } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import Grid from "@mui/material/Grid";
-import { Button, Tooltip, CardActions } from "@mui/material";
+} from "./shoppingCartSlice";
+import { fetchOrderAsync, selectCart } from "./singleCartSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { selectCart } from "../shoppingCart/singleCartSlice";
+import {
+  CardContent,
+  CardActions,
+  CardMedia,
+  Typography,
+  Card,
+  Grid,
+  Tooltip,
+  Button,
+} from "@mui/material";
+import { useState } from "react";
+import {
+  fetchSingleUser,
+  selectSingleUser,
+} from "../adminView/singleUserSlice";
+import { me, authenticate } from "../auth/authSlice";
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectSingleUser);
   const cart = useSelector(selectCart);
-  const cartId = cart.id;
+  const { id } = useSelector((state) => state.auth.me);
 
   useEffect(() => {
-    dispatch(fetchAllOrdersAsync(cartId));
-  }, [dispatch, cartId]);
-
-  const cartTotal = () => {
-    let total = 0;
-    return total;
-  };
+    dispatch(me());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchOrderAsync(id));
+  }, [dispatch, id]);
 
   return (
     <div className="all-items">
@@ -46,7 +52,11 @@ const Checkout = () => {
             <h2>Cart is empty!</h2>
           </div>
         )}
-        {cart.map((product) => {
+        {cart.length ? (
+          cart.map((product) => {
+            {
+              console.log(product.product);
+            }
           return (
             <div key={product.productId}>
               <Card
@@ -60,7 +70,7 @@ const Checkout = () => {
               >
                 <CardMedia
                   component="img"
-                  image={product.product.imageUrl}
+                  image={product.imageUrl}
                   height="300"
                   width="300"
                 />
@@ -71,7 +81,7 @@ const Checkout = () => {
                       color="text.secondary"
                       align="center"
                     >
-                      {product.product.name}
+                      {product.name}
                     </Typography>
                   </Link>
                   <Typography
@@ -79,8 +89,15 @@ const Checkout = () => {
                     color="text.secondary"
                     align="center"
                   >
-                    {product.product.price}
+                    {product.price}
                   </Typography>
+                  <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      align="center"
+                    >
+                      {product.itemCount}
+                      </Typography>
                   <CardActions
                     sx={{
                       display: "flex",
@@ -97,11 +114,11 @@ const Checkout = () => {
                           evt.preventDefault();
                           await dispatch(
                             deleteCartProductAsync(
-                              product.product.id,
-                              product.product.name
+                              product.id,
+                              product.name
                             )
                           );
-                          await dispatch(fetchCartAsync());
+                          await dispatch(fetchOrderAsync(id));
                         }}
                       />
                     </Tooltip>
@@ -110,8 +127,14 @@ const Checkout = () => {
               </Card>
             </div>
           );
-        })}
+        })
+        ) : (
+          <div>
+            <h2>Cart is empty!</h2>
+          </div>
+        )}
       </Grid>
+
       <Link to="/orderconfirmation">
         <div className="continue-shopping">
           <Button
