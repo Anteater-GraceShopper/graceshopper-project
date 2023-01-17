@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import {
-  fetchAllOrdersAsync,
   deleteCartProductAsync,
-  selectCarts,
 } from "./shoppingCartSlice";
 import { fetchOrderAsync, selectCart } from "./singleCartSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -20,6 +18,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import {
+  selectCart
   fetchSingleUser,
   selectSingleUser,
 } from "../adminView/singleUserSlice";
