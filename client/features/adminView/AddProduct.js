@@ -134,7 +134,16 @@ const AddProduct = () => {
             sx={{
               mt: 2,
             }}>
-            <Button variant="contained" className="submit-button" type="submit">
+            <Button
+              variant="contained"
+              className="submit-button"
+              type="submit"
+              sx={{
+                bgcolor: "#28536B",
+                "&:hover": {
+                  bgcolor: "#598588",
+                },
+              }}>
               Submit
             </Button>
           </Grid>

@@ -43,3 +43,12 @@ img {
   width: 250px;
   object-fit: cover;
 }
+
+.checkout-button {
+  text-align: center;
+}
+
+.continue-shopping {
+  text-align: center;
+  margin-top: 30px;
+}
