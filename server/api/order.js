@@ -15,7 +15,6 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:userId", async (req, res, next) => {
   try {
-    console.log("THIS IS THE USERID", req.params.userId);
     const order = await Order.findOne({
       where: {
         isComplete: false,
@@ -23,7 +22,6 @@ router.get("/:userId", async (req, res, next) => {
       },
     });
     const productCart = await order.getProducts();
-    console.log("PRODUCT CART", productCart);
     res.status(200).json(productCart);
   } catch (error) {
     next(error);
@@ -49,3 +47,5 @@ router.put("/:userId/:productId", async (req, res, next) => {
     next(error);
   }
 });
+
+router.put("/:orderId");
