@@ -13,8 +13,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { me } from "../auth/authSlice";
-import { deleteCartProductAsync } from "./shoppingCartSlice";
-import { fetchOrderAsync, selectCart } from "./singleCartSlice";
+import { deleteCartProductAsync } from "../shoppingCart/shoppingCartSlice";
+import { fetchOrderAsync, selectCart } from "../shoppingCart/singleCartSlice";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -58,26 +58,26 @@ const Checkout = () => {
               >
                 <CardMedia
                   component="img"
-                  image={product.product.imageUrl}
+                  image={product.imageUrl}
                   height="300"
                   width="300"
                 />
                 <CardContent>
-                  <Link to={`/products/${product.productId}`}>
+                <Link to={`/products/${product.id}`}>
                     <Typography
                       variant="body2"
                       color="text.secondary"
                       align="center"
                     >
-                      {product.product.name}
+                      {product.name}
                     </Typography>
-                  </Link>
+                    </Link>
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     align="center"
                   >
-                    {product.product.price}
+                    {product.price}
                   </Typography>
                   <CardActions
                     sx={{
@@ -95,11 +95,11 @@ const Checkout = () => {
                           evt.preventDefault();
                           await dispatch(
                             deleteCartProductAsync(
-                              product.product.id,
-                              product.product.name
+                              product.id,
+                              product.name
                             )
                           );
-                          await dispatch(fetchCartAsync());
+                          await dispatch(fetchOrderAsync(id));
                         }}
                       />
                     </Tooltip>
