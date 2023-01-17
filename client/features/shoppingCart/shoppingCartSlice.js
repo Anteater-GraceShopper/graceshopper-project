@@ -72,10 +72,10 @@ export const editCartAsync = createAsyncThunk(
 
 export const createOrderAsync = createAsyncThunk(
   "cart/createOrder",
-  async (productId, quantity) => {
+  async (id, quantity) => {
     try {
       const { data } = await axios.post(`/api/order/${id}`, {
-        productId,
+        id,
         quantity,
       });
       return data;
