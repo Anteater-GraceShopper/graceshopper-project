@@ -133,6 +133,13 @@ const Navbar = () => {
                   sx={{ mr: 3, ml: 3 }}>
                   Products
                 </Typography>
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to="/cart"
+                  sx={{ mr: 3, ml: 3 }}>
+                  Shopping Cart
+                </Typography>
               </div>
             )}
           </nav>

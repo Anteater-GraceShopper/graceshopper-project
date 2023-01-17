@@ -6,13 +6,21 @@ import {
   deleteCartProductAsync,
   selectCart,
 } from "./shoppingCartSlice";
-
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, useParams } from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import CardMedia from "@mui/material/CardMedia";
-import { CardContent } from "@mui/material";
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
+
+import {
+  CardContent,
+  CardActions,
+  CardMedia,
+  Typography,
+  Card,
+  Grid,
+  Tooltip,
+  Button,
+  Box,
+} from "@mui/material";
+
 import { fetchProductsAsync } from "../products/productsSlice";
 
 const ShoppingCart = ({ shoppingCart }) => {
@@ -83,20 +91,36 @@ const ShoppingCart = ({ shoppingCart }) => {
                       align="center">
                       {product.product.price}
                     </Typography>
-                    <button
-                      type="delete"
-                      onClick={async (evt) => {
-                        evt.preventDefault();
-                        await dispatch(
-                          deleteCartProductAsync(
-                            product.product.id,
-                            product.product.name
-                          )
-                        );
-                        await dispatch(fetchAllOrdersAsync());
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      align="center">
+                      {product.itemCount}
+                    </Typography>
+                    <CardActions
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        "&:hover": {
+                          cursor: "pointer",
+                        },
                       }}>
-                      Delete Item
-                    </button>
+                      <Tooltip title="Remove from cart">
+                        <DeleteIcon
+                          type="delete"
+                          onClick={async (evt) => {
+                            evt.preventDefault();
+                            await dispatch(
+                              deleteCartProductAsync(
+                                product.product.id,
+                                product.product.name
+                              )
+                            );
+                            await dispatch(fetchAllOrdersAsync());
+                          }}
+                        />
+                      </Tooltip>
+                    </CardActions>
                   </CardContent>
                 </Card>
               </div>
@@ -106,9 +130,36 @@ const ShoppingCart = ({ shoppingCart }) => {
       </Grid>
 
       <Link to="/checkout">
-        <button className="button">Checkout</button>
+        <div className="checkout-button">
+          <Button
+            align="center"
+            variant="contained"
+            sx={{
+              bgcolor: "#28536B",
+              "&:hover": {
+                bgcolor: "#598588",
+              },
+            }}>
+            Checkout
+          </Button>
+        </div>
       </Link>
-      <Link to="/products">Cancel</Link>
+
+      <Link to="/products">
+        <div className="continue-shopping">
+          <Button
+            align="center"
+            variant="contained"
+            sx={{
+              bgcolor: "#28536B",
+              "&:hover": {
+                bgcolor: "#598588",
+              },
+            }}>
+            Continue Shopping
+          </Button>
+        </div>
+      </Link>
     </div>
   );
 };
