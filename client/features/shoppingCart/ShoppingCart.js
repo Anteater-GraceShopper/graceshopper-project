@@ -14,7 +14,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { me } from "../auth/authSlice";
 import { deleteCartProductAsync } from "./shoppingCartSlice";
-import { fetchOrderAsync, selectCart } from "./singleCartSlice";
+import {
+  decrease,
+  fetchOrderAsync,
+  increase,
+  selectCart,
+} from "./singleCartSlice";
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -77,15 +82,14 @@ const ShoppingCart = () => {
                     width="300"
                   />
                   <CardContent>
-                    <Link to={`/products/${product.productId}`}>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        align="center"
-                      >
-                        {product.name}
-                      </Typography>
-                    </Link>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      align="center"
+                    >
+                      {product.name}
+                    </Typography>
+
                     <Typography
                       variant="body2"
                       color="text.secondary"
@@ -98,11 +102,23 @@ const ShoppingCart = () => {
                       color="text.secondary"
                       align="center"
                     >
-                      <button>-</button>
+                      <button
+                        onClick={() => {
+                          dispatch(decrease(product.cart.itemCount));
+                        }}
+                      >
+                        -
+                      </button>
                       <span> </span>
-                      {product.itemCount}
+                      {product.cart.itemCount}
                       <span> </span>
-                      <button>+</button>
+                      <button
+                        onClick={() => {
+                          dispatch(increase(product.cart.itemCount));
+                        }}
+                      >
+                        +
+                      </button>
                     </Typography>
                     <CardActions
                       sx={{
