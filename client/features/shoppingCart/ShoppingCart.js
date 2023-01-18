@@ -44,11 +44,6 @@ const ShoppingCart = () => {
           justifyContent: "center",
         }}
       >
-        {cart.length < 1 && (
-          <div>
-            <h2>Cart is empty!</h2>
-          </div>
-        )}
 
         {cart.length ? (
           cart.map((product) => {
